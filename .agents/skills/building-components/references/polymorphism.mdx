@@ -72,22 +72,22 @@ The `as` prop implementation uses dynamic component rendering:
 ```tsx
 // Simplified implementation
 function Component({ as: Element = "div", children, ...props }) {
-  return <Element {...props}>{children}</Element>;
+  return <Element {...props}>{children}</Element>
 }
 
 // More complete implementation with TypeScript
 type PolymorphicProps<E extends React.ElementType> = {
-  as?: E;
-  children?: React.ReactNode;
-} & React.ComponentPropsWithoutRef<E>;
+  as?: E
+  children?: React.ReactNode
+} & React.ComponentPropsWithoutRef<E>
 
 function Component<E extends React.ElementType = "div">({
   as,
   children,
   ...props
 }: PolymorphicProps<E>) {
-  const Element = as || "div";
-  return <Element {...props}>{children}</Element>;
+  const Element = as || "div"
+  return <Element {...props}>{children}</Element>
 }
 ```
 
@@ -111,8 +111,8 @@ npm install @radix-ui/react-slot
 The `asChild` pattern uses a boolean prop instead of specifying the element type:
 
 ```tsx
-import { Slot } from "@radix-ui/react-slot";
-import { cva, type VariantProps } from "class-variance-authority";
+import { Slot } from "@radix-ui/react-slot"
+import { cva, type VariantProps } from "class-variance-authority"
 
 const itemVariants = cva("rounded-lg border p-4", {
   variants: {
@@ -130,7 +130,7 @@ const itemVariants = cva("rounded-lg border p-4", {
     variant: "default",
     size: "default",
   },
-});
+})
 
 function Item({
   className,
@@ -140,7 +140,7 @@ function Item({
   ...props
 }: React.ComponentProps<"div"> &
   VariantProps<typeof itemVariants> & { asChild?: boolean }) {
-  const Comp = asChild ? Slot : "div";
+  const Comp = asChild ? Slot : "div"
   return (
     <Comp
       data-slot="item"
@@ -149,7 +149,7 @@ function Item({
       className={cn(itemVariants({ variant, size, className }))}
       {...props}
     />
-  );
+  )
 }
 ```
 
@@ -390,20 +390,20 @@ Create fully type-safe polymorphic components:
 
 ```tsx
 type PolymorphicRef<E extends React.ElementType> =
-  React.ComponentPropsWithRef<E>["ref"];
+  React.ComponentPropsWithRef<E>["ref"]
 
 type PolymorphicProps<E extends React.ElementType, Props = {}> = Props &
   Omit<React.ComponentPropsWithoutRef<E>, keyof Props> & {
-    as?: E;
-  };
+    as?: E
+  }
 
 // Component with full type safety
 function Component<E extends React.ElementType = "div">({
   as,
   ...props
 }: PolymorphicProps<E, { customProp?: string }>) {
-  const Element = as || "div";
-  return <Element {...props} />;
+  const Element = as || "div"
+  return <Element {...props} />
 }
 ```
 
@@ -428,11 +428,11 @@ Use discriminated unions for element-specific props:
 type ButtonProps =
   | { as: "button"; type?: "submit" | "button" | "reset" }
   | { as: "a"; href: string; target?: string }
-  | { as: "div"; role: "button"; tabIndex: number };
+  | { as: "div"; role: "button"; tabIndex: number }
 
 function Button(props: ButtonProps & { children: React.ReactNode }) {
-  const Element = props.as;
-  return <Element {...props} />;
+  const Element = props.as
+  return <Element {...props} />
 }
 ```
 
@@ -463,7 +463,7 @@ interface BoxProps {
    * @default 'div'
    * @example 'section', 'article', 'aside', 'main'
    */
-  as?: "div" | "section" | "article" | "aside" | "main" | "header" | "footer";
+  as?: "div" | "section" | "article" | "aside" | "main" | "header" | "footer"
 }
 ```
 
@@ -476,10 +476,10 @@ function Button({ as: Element = "button", ...props }) {
   if (__DEV__ && Element === "div" && !props.role) {
     console.warn(
       'Button: When using as="div", provide role="button" for accessibility',
-    );
+    )
   }
 
-  return <Element {...props} />;
+  return <Element {...props} />
 }
 ```
 
@@ -491,9 +491,9 @@ Ensure event handlers work across different elements:
 function Interactive({ as: Element = "button", onClick, ...props }) {
   const handleKeyDown = (e: React.KeyboardEvent) => {
     if (Element !== "button" && (e.key === "Enter" || e.key === " ")) {
-      onClick?.(e as any);
+      onClick?.(e as any)
     }
-  };
+  }
 
   return (
     <Element
@@ -501,7 +501,7 @@ function Interactive({ as: Element = "button", onClick, ...props }) {
       onKeyDown={Element !== "button" ? handleKeyDown : undefined}
       {...props}
     />
-  );
+  )
 }
 ```
 
@@ -551,7 +551,7 @@ Avoid using overly permissive types:
 ```tsx
 // ❌ Too permissive - no type safety
 function Component({ as: Element = "div", ...props }: any) {
-  return <Element {...props} />;
+  return <Element {...props} />
 }
 
 // ✅ Type safe
@@ -559,8 +559,8 @@ function Component<E extends React.ElementType = "div">({
   as,
   ...props
 }: PolymorphicProps<E>) {
-  const Element = as || "div";
-  return <Element {...props} />;
+  const Element = as || "div"
+  return <Element {...props} />
 }
 ```
 
@@ -571,13 +571,13 @@ Be aware of re-render implications:
 ```tsx
 // ❌ Creates new component on every render
 function Parent() {
-  const CustomDiv = (props) => <div {...props} />;
-  return <Component as={CustomDiv} />;
+  const CustomDiv = (props) => <div {...props} />
+  return <Component as={CustomDiv} />
 }
 
 // ✅ Stable component reference
-const CustomDiv = (props) => <div {...props} />;
+const CustomDiv = (props) => <div {...props} />
 function Parent() {
-  return <Component as={CustomDiv} />;
+  return <Component as={CustomDiv} />
 }
 ```

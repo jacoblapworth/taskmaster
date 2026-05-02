@@ -3,6 +3,6 @@ const config = {
     "@tailwindcss/postcss": {},
     "@pandacss/dev/postcss": {},
   },
-};
+}
 
-export default config;
+export default config
