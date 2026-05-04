@@ -1,6 +1,7 @@
 import type { ExtendableTheme } from "@pandacss/types"
 
-import { semanticTokens, tokens } from "./tokens"
+import { tokens } from "./primitives"
+import { semanticTokens } from "./semantic"
 
 export const theme: ExtendableTheme = {
   tokens,

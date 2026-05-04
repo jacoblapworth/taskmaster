@@ -1,0 +1,21 @@
+{
+  "$schema": "https://turborepo.dev/schema.json",
+  "ui": "tui",
+  "tasks": {
+    "next": {
+      "cache": false,
+      "persistent": true
+    },
+    "storybook": {
+      "dependsOn": ["tokens", "typegen"],
+      "cache": false,
+      "persistent": true
+    },
+    "typegen": {
+      "dependsOn": ["^typegen"]
+    },
+    "check": {
+      "dependsOn": ["tokens", "typegen", "^lint"]
+    }
+  }
+}

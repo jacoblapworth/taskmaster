@@ -14,7 +14,9 @@ export default definePreview({
         date: /Date$/i,
       },
     },
-
+    backgrounds: {
+      disable: true,
+    },
     a11y: {
       // 'todo' - show a11y violations in the test UI only
       // 'error' - fail CI on a11y violations
@@ -22,6 +24,7 @@ export default definePreview({
       test: "todo",
     },
   },
+
   decorators: [
     withThemeByClassName({
       defaultTheme: "dark",

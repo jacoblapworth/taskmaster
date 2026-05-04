@@ -1,0 +1,78 @@
+"use client"
+
+import { useSelectedLayoutSegment } from "next/navigation"
+
+import { styled } from "@/styled/jsx"
+
+import { CheckmarkCircleFill } from "./icons/checkmark-circle-fill"
+import { CircleDottedAndCircle } from "./icons/circle-dotted-and-circle"
+import { Clipboard } from "./icons/clipboard"
+import { NavL1Item } from "./nav-l1-item"
+
+const Container = styled("nav", {
+  base: {
+    display: "flex",
+    flexGrow: 0,
+    minWidth: "0",
+    alignItems: "flex-start",
+    // justifyContent: "space-between",
+    alignSelf: "flex-start",
+    justifySelf: "flex-start",
+    backgroundColor: "background.secondary",
+    borderRadius: "full",
+    padding: "[8px]",
+    border: "tertiary",
+  },
+})
+
+const Ul = styled("ul", {
+  base: {
+    display: "flex",
+    flexDirection: "column",
+    gap: "2",
+  },
+})
+
+const Li = styled("li", {
+  base: {
+    // padding: "1rem",
+  },
+})
+
+const navConfig = [
+  {
+    id: "tasks",
+    label: "Tasks",
+    href: "/tasks",
+    icon: <CheckmarkCircleFill />,
+  },
+  {
+    id: "projects",
+    label: "Projects",
+    href: "/projects",
+    icon: <Clipboard />,
+  },
+  {
+    id: "teams",
+    label: "Teams",
+    href: "/teams",
+    icon: <CircleDottedAndCircle />,
+  },
+] as const
+
+export function Nav() {
+  const selected = useSelectedLayoutSegment()
+  return (
+    <Container>
+      <Ul>
+        {navConfig.map(({ id, href, icon }) => (
+          <Li key={id}>
+            <NavL1Item href={href} isActive={selected === href}>
+              {icon}
+            </NavL1Item>
+          </Li>
+        ))}
+      </Ul>
+    </Container>
+  )
+}

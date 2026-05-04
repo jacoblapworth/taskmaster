@@ -5,7 +5,9 @@ export default defineConfig({
   categories: {
     correctness: "error",
   },
-  rules: {},
+  rules: {
+    "typescript/no-unused-vars": "warn",
+  },
   env: {
     builtin: true,
   },
