@@ -1,6 +1,6 @@
 import { ThemeProvider } from "@wrksz/themes/next"
 import type { Metadata } from "next"
-import { Geist, Geist_Mono } from "next/font/google"
+import { Geist_Mono, Inter } from "next/font/google"
 
 import "./index.css"
 import { Providers } from "@/app/providers"
@@ -10,7 +10,7 @@ import { ReduxProvider } from "@/components/redux-provider"
 import { DEFAULT_THEME } from "@/constants"
 import { styled } from "@/styled/jsx"
 
-const geistSans = Geist({
+const inter = Inter({
   variable: "--fonts-sans",
   subsets: ["latin"],
 })
@@ -42,7 +42,7 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
-    <html lang="en" className={`${geistSans.variable} ${geistMono.variable}`}>
+    <html lang="en" className={`${geistMono.variable} ${inter.variable}`}>
       <Body>
         <ReduxProvider>
           <ThemeProvider

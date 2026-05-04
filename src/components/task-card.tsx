@@ -6,6 +6,6 @@ interface Props {
   status?: TaskStatus
 }
 
-export function TaskCard({ status = "todo" }: Props) {
+export function TaskCard({ status = "TODO" }: Props) {
   return <Card>status: {status}</Card>
 }

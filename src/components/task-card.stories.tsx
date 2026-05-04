@@ -7,8 +7,20 @@ const meta = preview.meta({
   component: TaskCard,
 })
 
-export const Primary = meta.story({
+export const Todo = meta.story({
   args: {
-    status: "todo",
+    status: "TODO",
+  },
+})
+
+export const InProgress = meta.story({
+  args: {
+    status: "IN_PROGRESS",
+  },
+})
+
+export const Done = meta.story({
+  args: {
+    status: "DONE",
   },
 })

@@ -15,6 +15,13 @@ export default defineConfig({
   theme: {
     extend: theme,
   },
+  conditions: {
+    extend: {
+      activeItem: "&[data-active-item]",
+      enter: "&[data-enter]",
+      exit: "&[data-exit]",
+    },
+  },
   outdir: ".styled",
   importMap: "styled",
 })

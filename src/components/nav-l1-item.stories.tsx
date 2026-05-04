@@ -7,7 +7,7 @@ const meta = preview.meta({
   title: "Components/NavL1Item",
   component: NavL1Item,
   args: {
-    href: "#",
+    href: "#" as any,
     children: <CheckmarkCircleFill />,
   },
 })

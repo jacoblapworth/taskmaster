@@ -7,6 +7,17 @@ import "../src/app/index.css"
 export default definePreview({
   addons: [addonDocs(), addonThemes()],
 
+  decorators: [
+    withThemeByClassName({
+      defaultTheme: "Dark",
+      themes: {
+        Liht: "light",
+        Dark: "dark",
+      },
+    }),
+  ],
+  tags: ["autodocs"],
+
   parameters: {
     controls: {
       matchers: {
@@ -24,14 +35,4 @@ export default definePreview({
       test: "todo",
     },
   },
-
-  decorators: [
-    withThemeByClassName({
-      defaultTheme: "dark",
-      themes: {
-        light: "light",
-        dark: "dark",
-      },
-    }),
-  ],
 })

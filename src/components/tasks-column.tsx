@@ -34,7 +34,7 @@ interface Props {
   children: ReactNode
 }
 
-export function TasksColumn({ children, count = 0, status = "todo" }: Props) {
+export function TasksColumn({ children, count = 0, status = "TODO" }: Props) {
   return (
     <Container>
       <Header>

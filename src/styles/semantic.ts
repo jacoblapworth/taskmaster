@@ -256,4 +256,11 @@ export const semanticTokens = defineSemanticTokens({
       value: "{borderWidths.sm} solid {colors.border.info}",
     },
   },
+
+  zIndex: {
+    dropdown: { value: 200 },
+    modal: { value: 400 },
+    popover: { value: 600 },
+    tooltip: { value: 800 },
+  },
 })

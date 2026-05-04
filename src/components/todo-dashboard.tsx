@@ -15,9 +15,9 @@ import {
 } from "@/redux/thunks"
 
 const statusLabel = {
-  todo: "To do",
-  in_progress: "In progress",
-  done: "Done",
+  TODO: "To do",
+  IN_PROGRESS: "In progress",
+  DONE: "Done",
 } as const
 
 export function TodoDashboard() {

@@ -2,7 +2,7 @@ import { z } from "zod"
 
 export const DateTime = z.iso.datetime()
 
-export const TaskStatus = z.enum(["todo", "in_progress", "done"])
+export const TaskStatus = z.enum(["TODO", "IN_PROGRESS", "DONE"])
 
 export const Organisation = z.object({
   id: z.string(),

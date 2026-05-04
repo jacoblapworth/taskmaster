@@ -11,7 +11,7 @@ export const NavL2Item = styled(NextLink, {
     alignItems: "center",
     justifyContent: "flex-start",
     padding: "2",
-    lineHeight: "1",
+    lineHeight: "[1]",
     _hover: {
       backgroundColor: "surface.hover",
     },

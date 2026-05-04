@@ -91,7 +91,7 @@ export const tokens = defineTokens({
   },
 
   fonts: {
-    sans: { value: "geist-sans" },
+    sans: { value: "inter" },
     mono: { value: "geist-mono" },
   },
 
