@@ -1,5 +1,7 @@
 import { z } from "zod"
 
+export const DateTime = z.iso.datetime()
+
 export const TaskStatus = z.enum(["todo", "in_progress", "done"])
 
 export const Organisation = z.object({
@@ -14,12 +16,27 @@ export const Team = z.object({
   name: z.string(),
 })
 
+export function createTeam(data: Omit<z.infer<typeof Team>, "id">) {
+  return {
+    id: crypto.randomUUID(),
+    ...data,
+  }
+}
+
 export const Project = z.object({
   id: z.uuid(),
   teamId: z.uuid(),
   name: z.string(),
   description: z.string().optional(),
+  dueDate: DateTime.optional(),
 })
+
+export function createProject(data: Omit<z.infer<typeof Project>, "id">) {
+  return {
+    id: crypto.randomUUID(),
+    ...data,
+  }
+}
 
 export const Task = z.object({
   id: z.uuid(),
@@ -28,10 +45,23 @@ export const Task = z.object({
   description: z.string().optional(),
   status: TaskStatus,
   assignee: z.string().optional(),
-  dueDate: z.string().optional(),
-  createdAt: z.string(),
-  updatedAt: z.string(),
+  dueDate: DateTime.optional(),
+  createdAt: DateTime,
+  updatedAt: DateTime,
+  completedAt: DateTime.optional(),
 })
+
+export function createTask(
+  data: Omit<z.infer<typeof Task>, "id" | "createdAt" | "updatedAt">,
+) {
+  const timestamp = new Date().toISOString()
+  return {
+    id: crypto.randomUUID(),
+    createdAt: timestamp,
+    updatedAt: timestamp,
+    ...data,
+  }
+}
 
 export const TodoHierarchy = z.object({
   organisations: z.array(Organisation),

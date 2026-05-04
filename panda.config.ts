@@ -1,20 +1,20 @@
 import { defineConfig } from "@pandacss/dev"
 
+import { globalCss } from "@/styles/globals"
+import { theme } from "@/styles/theme"
+
 export default defineConfig({
-  // Whether to use css reset
+  jsxFramework: "react",
   preflight: true,
-
-  // Where to look for your css declarations
-  include: ["./src/**/*.{js,jsx,ts,tsx}", "./pages/**/*.{js,jsx,ts,tsx}"],
-
-  // Files to exclude
+  shorthands: false,
+  strictTokens: true,
+  strictPropertyValues: true,
+  include: ["./src/**/*.{js,jsx,ts,tsx}"],
   exclude: [],
-
-  // Useful for theme customization
+  globalCss,
   theme: {
-    extend: {},
+    extend: theme,
   },
-
-  // The output directory for your css system
   outdir: ".styled",
+  importMap: "styled",
 })

@@ -95,146 +95,210 @@ export const semanticTokens = defineSemanticTokens({
   colors: {
     background: {
       primary: {
-        base: { value: "{zinc.50}" },
-        _dark: { value: "{zinc.900}" },
+        value: {
+          base: "{colors.zinc.50}",
+          _dark: "{colors.zinc.900}",
+        },
       },
       secondary: {
-        base: { value: "{white}" },
-        _dark: { value: "{zinc.950}" },
+        value: {
+          base: "{colors.white}",
+          _dark: "{colors.zinc.950}",
+        },
       },
       overlay: {
-        base: { value: "oklch(0% 0 0 / 0.5)" },
-        _dark: { value: "oklch(0% 0 0 / 0.5)" },
+        value: {
+          base: "oklch(0% 0 0 / 0.5)",
+          _dark: "oklch(0% 0 0 / 0.5)",
+        },
       },
     },
     surface: {
       primary: {
-        base: { value: "{zinc.950}" },
-        _dark: { value: "{white}" },
+        value: {
+          base: "{colors.zinc.950}",
+          _dark: "{colors.white}",
+        },
       },
       secondary: {
-        base: { value: "{white}" },
-        _dark: { value: "{zinc.800}" },
+        value: {
+          base: "{colors.white}",
+          _dark: "{colors.zinc.800}",
+        },
       },
       tertiary: {
-        base: { value: "{zinc.100}" },
-        _dark: { value: "{zinc.950}" },
+        value: {
+          base: "{colors.zinc.100}",
+          _dark: "{colors.zinc.950}",
+        },
       },
       quaternary: {
-        base: { value: "{zinc.200}" },
-        _dark: { value: "{zinc.950}" },
+        value: {
+          base: "{colors.zinc.200}",
+          _dark: "{colors.zinc.950}",
+        },
       },
       positive: {
-        base: { value: "{emerald.100}" },
-        _dark: { value: "{emerald.950}" },
+        value: {
+          base: "{colors.emerald.100}",
+          _dark: "{colors.emerald.950}",
+        },
       },
       negative: {
-        base: { value: "{red.100}" },
-        _dark: { value: "{red.950}" },
+        value: {
+          base: "{colors.red.100}",
+          _dark: "{colors.red.950}",
+        },
       },
       warning: {
-        base: { value: "{amber.100}" },
-        _dark: { value: "{amber.950}" },
+        value: {
+          base: "{colors.amber.100}",
+          _dark: "{colors.amber.950}",
+        },
       },
       info: {
-        base: { value: "{violet.100}" },
-        _dark: { value: "{violet.950}" },
+        value: {
+          base: "{colors.violet.100}",
+          _dark: "{colors.violet.950}",
+        },
       },
     },
     text: {
       primary: {
-        base: { value: "{zinc.900}" },
-        _dark: { value: "{zinc.50}" },
+        value: {
+          base: "{colors.zinc.900}",
+          _dark: "{colors.zinc.50}",
+        },
       },
       secondary: {
-        base: { value: "{zinc.700}" },
-        _dark: { value: "{zinc.200}" },
+        value: {
+          base: "{colors.zinc.700}",
+          _dark: "{colors.zinc.200}",
+        },
       },
       tertiary: {
-        base: { value: "{zinc.500}" },
-        _dark: { value: "{zinc.400}" },
+        value: {
+          base: "{colors.zinc.500}",
+          _dark: "{colors.zinc.400}",
+        },
       },
       placeholder: {
-        value: "{text.tertiary}",
+        value: "{colors.text.tertiary}",
       },
       positive: {
-        base: { value: "{emerald.600}" },
-        _dark: { value: "{emerald.500}" },
+        value: {
+          base: "{colors.emerald.600}",
+          _dark: "{colors.emerald.500}",
+        },
       },
       negative: {
-        base: { value: "{red.600}" },
-        _dark: { value: "{red.500}" },
+        value: {
+          base: "{colors.red.600}",
+          _dark: "{colors.red.500}",
+        },
       },
       warning: {
-        base: { value: "{amber.600}" },
-        _dark: { value: "{amber.500}" },
+        value: {
+          base: "{colors.amber.600}",
+          _dark: "{colors.amber.500}",
+        },
       },
       info: {
-        base: { value: "{violet.600}" },
-        _dark: { value: "{violet.500}" },
+        value: {
+          base: "{colors.violet.600}",
+          _dark: "{colors.violet.500}",
+        },
       },
     },
     icon: {
       primary: {
-        base: { value: "{zinc.900}" },
-        _dark: { value: "{zinc.50}" },
+        value: {
+          base: "{colors.zinc.900}",
+          _dark: "{colors.zinc.50}",
+        },
       },
       secondary: {
-        base: { value: "{zinc.700}" },
-        _dark: { value: "{zinc.200}" },
+        value: {
+          base: "{colors.zinc.700}",
+          _dark: "{colors.zinc.200}",
+        },
       },
       tertiary: {
-        base: { value: "{zinc.400}" },
-        _dark: { value: "{zinc.500}" },
+        value: {
+          base: "{colors.zinc.400}",
+          _dark: "{colors.zinc.500}",
+        },
       },
       placeholder: {
-        value: "{text.tertiary}",
+        value: "{colors.text.tertiary}",
       },
       positive: {
-        base: { value: "{emerald.600}" },
-        _dark: { value: "{emerald.500}" },
+        value: {
+          base: "{colors.emerald.600}",
+          _dark: "{colors.emerald.500}",
+        },
       },
       negative: {
-        base: { value: "{red.600}" },
-        _dark: { value: "{red.500}" },
+        value: {
+          base: "{colors.red.600}",
+          _dark: "{colors.red.500}",
+        },
       },
       warning: {
-        base: { value: "{amber.600}" },
-        _dark: { value: "{amber.500}" },
+        value: {
+          base: "{colors.amber.600}",
+          _dark: "{colors.amber.500}",
+        },
       },
       info: {
-        base: { value: "{violet.600}" },
-        _dark: { value: "{violet.500}" },
+        value: {
+          base: "{colors.violet.600}",
+          _dark: "{colors.violet.500}",
+        },
       },
     },
     border: {
       primary: {
-        base: { value: "{white}" },
-        _dark: { value: "{black}" },
+        value: {
+          base: "{colors.white}",
+          _dark: "{colors.black}",
+        },
       },
       secondary: {
-        base: { value: "{zinc.200}" },
-        _dark: { value: "{zinc.600}" },
+        value: {
+          base: "{colors.zinc.200}",
+          _dark: "{colors.zinc.600}",
+        },
       },
       tertiary: {
-        base: { value: "{zinc.100}" },
-        _dark: { value: "{zinc.800}" },
+        value: {
+          base: "{colors.zinc.100}",
+          _dark: "{colors.zinc.800}",
+        },
       },
       positive: {
-        base: { value: "{emerald.300}" },
-        _dark: { value: "{emerald.700}" },
+        value: {
+          base: "{colors.emerald.300}",
+          _dark: "{colors.emerald.700}",
+        },
       },
       negative: {
-        base: { value: "{red.300}" },
-        _dark: { value: "{red.700}" },
+        value: {
+          base: "{colors.red.300}",
+          _dark: "{colors.red.700}",
+        },
       },
       warning: {
-        base: { value: "{amber.300}" },
-        _dark: { value: "{amber.700}" },
+        value: {
+          base: "{colors.amber.300}",
+          _dark: "{colors.amber.700}",
+        },
       },
       info: {
-        base: { value: "{violet.300}" },
-        _dark: { value: "{violet.700}" },
+        value: {
+          base: "{colors.violet.300}",
+          _dark: "{colors.violet.700}",
+        },
       },
     },
   },
