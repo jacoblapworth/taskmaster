@@ -10,15 +10,17 @@ export const NavL2Item = styled(NextLink, {
     display: "flex",
     alignItems: "center",
     justifyContent: "flex-start",
+    padding: "2",
+    lineHeight: "1",
     _hover: {
-      backgroundColor: "background.secondary",
+      backgroundColor: "surface.hover",
     },
   },
   variants: {
     isActive: {
       true: {
         color: "text.primary",
-        backgroundColor: "background.secondary",
+        backgroundColor: "surface.active",
       },
     },
   },

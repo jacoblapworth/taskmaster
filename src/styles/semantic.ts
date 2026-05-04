@@ -103,6 +103,12 @@ export const semanticTokens = defineSemanticTokens({
           _dark: "{colors.zinc.400}",
         },
       },
+      inverse: {
+        value: {
+          base: "{colors.zinc.50}",
+          _dark: "{colors.zinc.950}",
+        },
+      },
       placeholder: {
         value: "{colors.text.tertiary}",
       },

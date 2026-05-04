@@ -11,12 +11,12 @@ import { DEFAULT_THEME } from "@/constants"
 import { styled } from "@/styled/jsx"
 
 const geistSans = Geist({
-  variable: "--font-geist-sans",
+  variable: "--fonts-sans",
   subsets: ["latin"],
 })
 
 const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+  variable: "--fonts-mono",
   subsets: ["latin"],
 })
 

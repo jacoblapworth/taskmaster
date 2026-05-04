@@ -13,14 +13,14 @@ export const NavL1Item = styled(NextLink, {
     alignItems: "center",
     justifyContent: "center",
     _hover: {
-      backgroundColor: "background.secondary",
+      backgroundColor: "surface.tertiary",
     },
   },
   variants: {
     isActive: {
       true: {
         color: "icon.primary",
-        backgroundColor: "background.secondary",
+        backgroundColor: "surface.tertiary",
       },
     },
   },

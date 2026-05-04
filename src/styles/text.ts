@@ -35,14 +35,14 @@ export const textStyles = defineTextStyles({
     md: {
       value: {
         fontFamily: "sans",
-        fontWeight: "700",
+        fontWeight: "600",
         fontSize: "15px",
       },
     },
     lg: {
       value: {
         fontFamily: "sans",
-        fontWeight: "700",
+        fontWeight: "600",
         fontSize: "18px",
       },
     },

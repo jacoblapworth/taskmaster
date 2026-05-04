@@ -8,11 +8,11 @@ const Container = styled("div", {
     flexDirection: "column",
     flexGrow: 0,
     minWidth: "[300px]",
-    alignItems: "flex-start",
+    alignItems: "stretch",
     backgroundColor: "background.secondary",
     border: "tertiary",
     borderRadius: "3xl",
-    padding: "4",
+    padding: "2",
   },
 })
 
@@ -21,6 +21,7 @@ const Header = styled("div", {
     display: "flex",
     alignItems: "center",
     textStyle: "heading.md",
+    padding: "2",
   },
 })
 
