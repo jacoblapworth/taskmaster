@@ -62,12 +62,13 @@ const navConfig = [
 
 export function Nav() {
   const selected = useSelectedLayoutSegment()
+  console.log({ selected })
   return (
     <Container>
       <Ul>
         {navConfig.map(({ id, href, icon }) => (
           <Li key={id}>
-            <NavL1Item href={href} isActive={selected === href}>
+            <NavL1Item href={href} isActive={selected === id}>
               {icon}
             </NavL1Item>
           </Li>

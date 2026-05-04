@@ -40,9 +40,13 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 
-## Panda
+# panda
 .styled
 styled-system-studio
 
+# storybook
 *storybook.log
 storybook-static
+
+# turbo
+.turbo

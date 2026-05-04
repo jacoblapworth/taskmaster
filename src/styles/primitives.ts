@@ -89,4 +89,12 @@ export const tokens = defineTokens({
   borderWidths: {
     sm: { value: "1px" },
   },
+
+  fonts: {
+    sans: { value: "geist-sans" },
+    mono: { value: "geist-mono" },
+  },
+
+  fontSizes: {},
+  fontWeights: {},
 })
