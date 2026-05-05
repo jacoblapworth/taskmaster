@@ -1,3 +1,4 @@
+import { Analytics } from "@vercel/analytics/next"
 import { ThemeProvider } from "@wrksz/themes/next"
 import type { Metadata } from "next"
 import { Geist_Mono, Inter } from "next/font/google"
@@ -59,6 +60,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
             </Providers>
           </ThemeProvider>
         </ReduxProvider>
+        <Analytics />
       </Body>
     </html>
   )
