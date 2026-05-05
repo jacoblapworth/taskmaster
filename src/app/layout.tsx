@@ -9,7 +9,6 @@ import { Body } from "@/components/body"
 import { Nav } from "@/components/nav"
 import { ReduxProvider } from "@/components/redux-provider"
 import { DEFAULT_THEME } from "@/constants"
-import { styled } from "@/styled/jsx"
 
 const inter = Inter({
   variable: "--fonts-sans",
@@ -19,21 +18,6 @@ const inter = Inter({
 const geistMono = Geist_Mono({
   variable: "--fonts-mono",
   subsets: ["latin"],
-})
-
-const Container = styled("div", {
-  base: {
-    justifyContent: "stretch",
-    alignItems: "stretch",
-    display: "flex",
-    flexDirection: "column-reverse",
-    columnGap: "2",
-    padding: "4",
-    height: "[100dvh]",
-    md: {
-      flexDirection: "row",
-    },
-  },
 })
 
 export const metadata: Metadata = {
@@ -53,10 +37,8 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
             storage="cookie"
           >
             <Providers>
-              <Container>
-                <Nav />
-                {children}
-              </Container>
+              <Nav />
+              {children}
             </Providers>
           </ThemeProvider>
         </ReduxProvider>

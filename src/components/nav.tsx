@@ -2,23 +2,24 @@
 
 import { useSelectedLayoutSegment } from "next/navigation"
 
-import { styled } from "@/styled/jsx"
+import { Divider, styled } from "@/styled/jsx"
 
 import { CheckmarkCircleFill } from "./icons/checkmark-circle-fill"
 import { CircleDottedAndCircle } from "./icons/circle-dotted-and-circle"
 import { Clipboard } from "./icons/clipboard"
 import { NavL1Item } from "./nav-l1-item"
+import { SettingsMenu } from "./settings-menu"
 
 const Container = styled("nav", {
   base: {
     display: "flex",
     flexGrow: 0,
-    minWidth: "0",
+    flexShrink: 0,
     alignItems: "flex-start",
     // justifyContent: "space-between",
     alignSelf: "flex-start",
     justifySelf: "flex-start",
-    backgroundColor: "background.secondary",
+    backgroundColor: "background.primary",
     borderRadius: "full",
     padding: "[8px]",
     border: "tertiary",
@@ -28,13 +29,15 @@ const Container = styled("nav", {
 const Ul = styled("ul", {
   base: {
     display: "flex",
-    flexDirection: "column",
+    flexDirection: { base: "row", md: "column" },
     gap: "2",
   },
 })
 
 const Li = styled("li", {
   base: {
+    listStyle: "none",
+    padding: "0",
     // padding: "1rem",
   },
 })
@@ -73,6 +76,14 @@ export function Nav() {
             </NavL1Item>
           </Li>
         ))}
+        <Divider
+          orientation={{ base: "horizontal", md: "vertical" }}
+          borderColor="border.tertiary"
+        />
+
+        <Li>
+          <SettingsMenu />
+        </Li>
       </Ul>
     </Container>
   )

@@ -6,7 +6,7 @@ export const PageCard = styled("div", {
     flexDirection: "column",
     flexGrow: 0,
     alignItems: "flex-start",
-    backgroundColor: "background.secondary",
+    backgroundColor: "background.primary",
     border: "tertiary",
     borderRadius: "3xl",
     padding: "4",

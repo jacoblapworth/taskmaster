@@ -76,6 +76,7 @@ export const tokens = defineTokens({
   },
 
   radii: {
+    circle: { value: "50%" },
     xs: { value: "0.125rem" },
     sm: { value: "0.25rem" },
     md: { value: "0.375rem" },

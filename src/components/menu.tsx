@@ -23,7 +23,7 @@ export const Menu = styled(
       borderStyle: "solid",
       borderColor: "border",
       backgroundColor: "background.primary",
-      padding: "4",
+      padding: "2",
       color: "text.primary",
       boxShadow: "md",
       outline: "none",

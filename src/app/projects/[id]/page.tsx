@@ -1,10 +1,12 @@
 import { PageCard } from "@/components/page-card"
 import { TasksBoard } from "@/components/tasks-board"
 
-export default function Page(props: PageProps<"/projects/[id]">) {
+export default async function Page(props: PageProps<"/projects/[id]">) {
+  const { id } = await props.params
+
   return (
     <PageCard>
-      <TasksBoard />
+      <TasksBoard projectId={id} />
     </PageCard>
   )
 }

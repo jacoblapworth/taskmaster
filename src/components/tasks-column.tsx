@@ -1,7 +1,11 @@
-import type { ReactNode } from "react"
+"use client"
 
-import type { TaskStatus } from "@/models/types"
+import { useDroppable } from "@dnd-kit/react"
+
+import type { Task, TaskStatus } from "@/models/types"
 import { styled } from "@/styled/jsx"
+
+import { TaskCard } from "./task-card"
 
 const Container = styled("div", {
   base: {
@@ -10,7 +14,7 @@ const Container = styled("div", {
     gap: "2",
     backgroundColor: "background.secondary",
     padding: "2",
-    borderRadius: "2xl",
+    borderRadius: "xl",
   },
 })
 
@@ -29,18 +33,42 @@ const Column = styled("div", {
 })
 
 interface Props {
-  status?: TaskStatus
-  count?: number
-  children: ReactNode
+  status: TaskStatus
+  tasks: Task[]
+  droppable?: boolean
 }
 
-export function TasksColumn({ children, count = 0, status = "TODO" }: Props) {
+export function TasksColumn({ droppable = true, status, tasks }: Props) {
+  const { isDropTarget, ref } = useDroppable({
+    id: status,
+    type: "column",
+    accept: "item",
+    disabled: !droppable,
+  })
+
   return (
-    <Container>
+    <Container
+      ref={ref}
+      style={
+        isDropTarget
+          ? { boxShadow: "inset 0 0 0 1px var(--colors-border-secondary)" }
+          : undefined
+      }
+    >
       <Header>
-        {status} ({count})
+        {status} ({tasks.length})
       </Header>
-      <Column>{children}</Column>
+      <Column>
+        {tasks.map((task, index) => (
+          <TaskCard
+            key={task.id}
+            task={task}
+            index={index}
+            column={status}
+            sortable={droppable}
+          />
+        ))}
+      </Column>
     </Container>
   )
 }

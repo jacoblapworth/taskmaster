@@ -1,32 +1,38 @@
 "use client"
 
 import { useTheme } from "@wrksz/themes/client"
-// import { MoonIcon, SunIcon } from "lucide-react"
+import {
+  Moon,
+  Sun,
+  // Monitor
+} from "lucide-react"
 import { useCallback } from "react"
-
-type ThemeValue = "light" | "dark"
 
 const map = {
   light: {
-    // icon: <MoonIcon suppressHydrationWarning />,
+    icon: <Moon suppressHydrationWarning />,
     value: "dark",
   },
   dark: {
-    // icon: <SunIcon suppressHydrationWarning />,
+    icon: <Sun suppressHydrationWarning />,
     value: "light",
   },
+  // system: {
+  //   icon: <Monitor suppressHydrationWarning />,
+  //   value: "system",
+  // },
 } as const
 
 export function useThemeToggle() {
-  const { theme, setTheme } = useTheme()
-  const { value } = map[(theme as ThemeValue) ?? "dark"]
+  const { resolvedTheme, setTheme } = useTheme()
+  const { value, icon } = map[resolvedTheme ?? "light"]
   const toggle = useCallback(() => {
     setTheme(value)
   }, [setTheme, value])
 
   return {
     toggle,
-
     value,
+    icon,
   }
 }

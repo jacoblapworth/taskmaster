@@ -1,9 +1,4 @@
-import {
-  combineReducers,
-  configureStore,
-  type Action,
-  type ThunkAction,
-} from "@reduxjs/toolkit"
+import { configureStore, type Action, type ThunkAction } from "@reduxjs/toolkit"
 import {
   FLUSH,
   PAUSE,
@@ -16,17 +11,7 @@ import {
 } from "redux-persist"
 import storage from "redux-persist/lib/storage"
 
-import { organisations } from "@/redux/slices/organisations.slice"
-import { projects } from "@/redux/slices/projects.slice"
-import { tasks } from "@/redux/slices/tasks.slice"
-import { teams } from "@/redux/slices/teams.slice"
-
-const rootReducer = combineReducers({
-  [organisations.reducerPath]: organisations.reducer,
-  [teams.reducerPath]: teams.reducer,
-  [projects.reducerPath]: projects.reducer,
-  [tasks.reducerPath]: tasks.reducer,
-})
+import { reducer as rootReducer } from "./reducer"
 
 const reducer = persistReducer(
   {

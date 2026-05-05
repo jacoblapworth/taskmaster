@@ -3,16 +3,19 @@ import { defineSemanticTokens } from "@pandacss/dev"
 export const semanticTokens = defineSemanticTokens({
   colors: {
     background: {
+      DEFAULT: {
+        value: "{colors.background.primary}",
+      },
       primary: {
         value: {
-          base: "{colors.zinc.50}",
-          _dark: "{colors.zinc.900}",
+          base: "{colors.white}",
+          _dark: "{colors.zinc.950}",
         },
       },
       secondary: {
         value: {
-          base: "{colors.white}",
-          _dark: "{colors.zinc.950}",
+          base: "{colors.zinc.50}",
+          _dark: "{colors.zinc.900}",
         },
       },
       overlay: {
@@ -23,6 +26,9 @@ export const semanticTokens = defineSemanticTokens({
       },
     },
     surface: {
+      DEFAULT: {
+        value: "{colors.surface.primary}",
+      },
       primary: {
         value: {
           base: "{colors.zinc.950}",
@@ -85,6 +91,9 @@ export const semanticTokens = defineSemanticTokens({
       },
     },
     text: {
+      DEFAULT: {
+        value: "{colors.text.primary}",
+      },
       primary: {
         value: {
           base: "{colors.zinc.900}",
@@ -138,6 +147,9 @@ export const semanticTokens = defineSemanticTokens({
       },
     },
     icon: {
+      DEFAULT: {
+        value: "{colors.icon.primary}",
+      },
       primary: {
         value: {
           base: "{colors.zinc.900}",

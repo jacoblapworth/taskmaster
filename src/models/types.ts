@@ -3,6 +3,7 @@ import { z } from "zod"
 export const DateTime = z.iso.datetime()
 
 export const TaskStatus = z.enum(["TODO", "IN_PROGRESS", "DONE"])
+export const TaskStatuses = ["TODO", "IN_PROGRESS", "DONE"] as const
 
 export const Organisation = z.object({
   id: z.string(),
@@ -17,6 +18,20 @@ export const Team = z.object({
 })
 
 export function createTeam(data: Omit<z.infer<typeof Team>, "id">) {
+  return {
+    id: crypto.randomUUID(),
+    ...data,
+  }
+}
+
+export const User = z.object({
+  id: z.uuid(),
+  teamId: z.uuid(),
+  name: z.string(),
+  email: z.email(),
+})
+
+export function createUser(data: Omit<z.infer<typeof User>, "id">) {
   return {
     id: crypto.randomUUID(),
     ...data,
@@ -44,8 +59,9 @@ export const Task = z.object({
   title: z.string(),
   description: z.string().optional(),
   status: TaskStatus,
-  assignee: z.string().optional(),
+  assigneeId: z.uuid().optional(),
   dueDate: DateTime.optional(),
+  order: z.number().int().nonnegative().optional(),
   createdAt: DateTime,
   updatedAt: DateTime,
   completedAt: DateTime.optional(),
@@ -66,6 +82,7 @@ export function createTask(
 export const TodoHierarchy = z.object({
   organisations: z.array(Organisation),
   teams: z.array(Team),
+  users: z.array(User),
   projects: z.array(Project),
   tasks: z.array(Task),
 })
@@ -75,6 +92,7 @@ export const ProjectWithTasks = Project.extend({
 })
 
 export const TeamWithProjects = Team.extend({
+  users: z.array(User),
   projects: z.array(ProjectWithTasks),
 })
 
@@ -85,6 +103,7 @@ export const OrganisationWithTeams = Organisation.extend({
 export type TaskStatus = z.infer<typeof TaskStatus>
 export type Organisation = z.infer<typeof Organisation>
 export type Team = z.infer<typeof Team>
+export type User = z.infer<typeof User>
 export type Project = z.infer<typeof Project>
 export type Task = z.infer<typeof Task>
 export type TodoHierarchy = z.infer<typeof TodoHierarchy>

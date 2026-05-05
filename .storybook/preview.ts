@@ -2,16 +2,20 @@ import addonDocs from "@storybook/addon-docs"
 import addonThemes, { withThemeByClassName } from "@storybook/addon-themes"
 import { definePreview } from "@storybook/nextjs-vite"
 
+import { withReduxProvider } from "./redux"
+import { withThemeProvider } from "./theme"
+
 import "../src/app/index.css"
 
 export default definePreview({
   addons: [addonDocs(), addonThemes()],
-
   decorators: [
+    withReduxProvider(),
+    withThemeProvider(),
     withThemeByClassName({
       defaultTheme: "Dark",
       themes: {
-        Liht: "light",
+        Light: "light",
         Dark: "dark",
       },
     }),

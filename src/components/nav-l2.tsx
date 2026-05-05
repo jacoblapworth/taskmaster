@@ -9,7 +9,7 @@ const Container = styled("div", {
     flexGrow: 0,
     minWidth: "[300px]",
     alignItems: "stretch",
-    backgroundColor: "background.secondary",
+    backgroundColor: "background.primary",
     border: "tertiary",
     borderRadius: "3xl",
     padding: "2",

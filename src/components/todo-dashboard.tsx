@@ -166,7 +166,7 @@ export function TodoDashboard() {
                                   </span>
                                 </div>
                                 <div className="mt-3 flex flex-wrap gap-3 text-xs font-medium uppercase tracking-[0.12em] text-stone-500">
-                                  <span>{task.assignee ?? "Unassigned"}</span>
+                                  <span>{task.assigneeId ?? "Unassigned"}</span>
                                   <span>{task.dueDate ?? "No due date"}</span>
                                 </div>
                               </li>

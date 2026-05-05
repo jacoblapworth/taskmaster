@@ -4,6 +4,7 @@ import {
   selectProjectsByTeamId,
   selectTasksByProjectId,
   selectTeamsByOrganisationId,
+  selectUsersByTeamId,
 } from "@/redux/selectors"
 import {
   organisationRemoved,
@@ -25,6 +26,11 @@ import {
   teamsAdded,
   teamsCleared,
 } from "@/redux/slices/teams.slice"
+import {
+  usersAdded,
+  usersCleared,
+  usersRemoved,
+} from "@/redux/slices/users.slice"
 import type { AppThunk, RootState } from "@/redux/store"
 
 function hasSeedData(state: RootState) {
@@ -38,6 +44,7 @@ export const ensureDemoData = (): AppThunk => (dispatch, getState) => {
 
   dispatch(organisationsAdded(demoHierarchy.organisations))
   dispatch(teamsAdded(demoHierarchy.teams))
+  dispatch(usersAdded(demoHierarchy.users))
   dispatch(projectsAdded(demoHierarchy.projects))
   dispatch(tasksAdded(demoHierarchy.tasks))
 }
@@ -45,6 +52,7 @@ export const ensureDemoData = (): AppThunk => (dispatch, getState) => {
 export const resetDemoData = (): AppThunk => (dispatch) => {
   dispatch(tasksCleared())
   dispatch(projectsCleared())
+  dispatch(usersCleared())
   dispatch(teamsCleared())
   dispatch(organisationsCleared())
   dispatch(ensureDemoData())
@@ -69,9 +77,14 @@ export const deleteTeamCascade =
   (teamId: string): AppThunk =>
   (dispatch, getState) => {
     const state = getState()
+    const userIds = selectUsersByTeamId(state, teamId).map((user) => user.id)
     const projectIds = selectProjectsByTeamId(state, teamId).map(
       (project) => project.id,
     )
+
+    if (userIds.length > 0) {
+      dispatch(usersRemoved(userIds))
+    }
 
     for (const projectId of projectIds) {
       dispatch(deleteProjectCascade(projectId))
