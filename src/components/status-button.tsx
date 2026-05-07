@@ -1,10 +1,12 @@
+import { useTranslations } from "next-intl"
+
 import { TaskStatuses, type TaskStatus } from "@/models/types"
 
 import {
   Menu,
   MenuButton,
   MenuItemCheck,
-  MenuItemCheckbox,
+  MenuItemRadio,
   MenuProvider,
 } from "./menu"
 import { StatusIcon } from "./status-icon"
@@ -14,18 +16,20 @@ interface Props {
 }
 
 export function StatusButton({ status }: Props) {
+  const t = useTranslations("task")
+
   return (
-    <MenuProvider>
+    <MenuProvider defaultValues={{ status }}>
       <MenuButton>
         <StatusIcon status={status} />
       </MenuButton>
       <Menu>
         {TaskStatuses.map((status) => (
-          <MenuItemCheckbox key={status} name={status}>
+          <MenuItemRadio key={status} name="status" value={status}>
             <StatusIcon status={status} />
-            {status}
+            {t(`status.${status}`)}
             <MenuItemCheck />
-          </MenuItemCheckbox>
+          </MenuItemRadio>
         ))}
       </Menu>
     </MenuProvider>

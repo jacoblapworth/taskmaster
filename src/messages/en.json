@@ -1,0 +1,10 @@
+{
+  "task": {
+    "status": {
+      "TODO": "To Do",
+      "IN_PROGRESS": "In Progress",
+      "BLOCKED": "Blocked",
+      "DONE": "Done"
+    }
+  }
+}

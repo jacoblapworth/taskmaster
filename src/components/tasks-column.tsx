@@ -1,9 +1,10 @@
 "use client"
 
 import { useDroppable } from "@dnd-kit/react"
+import { useTranslations } from "next-intl"
 
 import type { Task, TaskStatus } from "@/models/types"
-import { styled } from "@/styled/jsx"
+import { Box, HStack, styled } from "@/styled/jsx"
 
 import { StatusIcon } from "./status-icon"
 import { TaskCard } from "./task-card"
@@ -41,6 +42,7 @@ interface Props {
 }
 
 export function TasksColumn({ droppable = true, status, tasks }: Props) {
+  const t = useTranslations("task")
   const { isDropTarget, ref } = useDroppable({
     id: status,
     type: "column",
@@ -58,8 +60,19 @@ export function TasksColumn({ droppable = true, status, tasks }: Props) {
       }
     >
       <Header>
-        <StatusIcon status={status} />
-        {status} ({tasks.length})
+        <HStack gap="1" alignItems="center">
+          <StatusIcon status={status} />
+          {t(`status.${status}`)}
+          <Box
+            borderRadius="lg"
+            backgroundColor="surface.secondary"
+            paddingInline="2"
+            paddingBlock="0.5"
+            color="text.secondary"
+          >
+            {tasks.length}
+          </Box>
+        </HStack>
       </Header>
       <Column>
         {tasks.map((task, index) => (

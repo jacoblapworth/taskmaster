@@ -1,9 +1,11 @@
 import { Analytics } from "@vercel/analytics/next"
 import { ThemeProvider } from "@wrksz/themes/next"
 import type { Metadata } from "next"
-import { Geist_Mono, Inter } from "next/font/google"
+import { NextIntlClientProvider } from "next-intl"
 
 import "./index.css"
+import { Geist_Mono, Inter } from "next/font/google"
+
 import { Providers } from "@/app/providers"
 import { Body } from "@/components/body"
 import { Nav } from "@/components/nav"
@@ -30,21 +32,23 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html lang="en" className={`${geistMono.variable} ${inter.variable}`}>
       <Body>
-        <ReduxProvider>
-          <ThemeProvider
-            defaultTheme={DEFAULT_THEME}
-            themes={["light", "dark"]}
-            attribute="class"
-            storage="cookie"
-          >
-            <Providers>
-              <DemoDataHydrator />
-              <Nav />
-              {children}
-            </Providers>
-          </ThemeProvider>
-        </ReduxProvider>
-        <Analytics />
+        <NextIntlClientProvider>
+          <ReduxProvider>
+            <ThemeProvider
+              defaultTheme={DEFAULT_THEME}
+              themes={["light", "dark"]}
+              attribute="class"
+              storage="cookie"
+            >
+              <Providers>
+                <DemoDataHydrator />
+                <Nav />
+                {children}
+              </Providers>
+            </ThemeProvider>
+          </ReduxProvider>
+          <Analytics />
+        </NextIntlClientProvider>
       </Body>
     </html>
   )
