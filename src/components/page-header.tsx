@@ -1,3 +1,5 @@
+import type { ReactNode } from "react"
+
 import { styled } from "@/styled/jsx"
 
 const Header = styled("header", {
@@ -11,6 +13,10 @@ const Header = styled("header", {
   },
 })
 
-export function PageHeader() {
-  return <Header>TaskMaster</Header>
+interface Props {
+  children: ReactNode
+}
+
+export function PageHeader({ children }: Props) {
+  return <Header>{children}</Header>
 }

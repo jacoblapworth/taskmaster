@@ -2,11 +2,12 @@ import { styled } from "@/styled/jsx"
 
 export const PageCard = styled("div", {
   base: {
+    flexGrow: 1,
     display: "grid",
     gridTemplateAreas: "'header' 'content'",
+    gridTemplateRows: "auto 1fr",
     flexDirection: "column",
-    flexGrow: 0,
-    alignItems: "flex-start",
+    alignItems: "stretch",
     backgroundColor: "background.secondary",
     border: "tertiary",
     borderRadius: "3xl",

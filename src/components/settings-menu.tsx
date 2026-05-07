@@ -1,3 +1,5 @@
+import profile from "@/public/profile-jacob.jpeg"
+
 import { Avatar } from "./avatar"
 import { Menu, MenuButton, MenuItem, MenuProvider } from "./menu"
 import { useThemeToggle } from "./theme-toggle"
@@ -7,12 +9,7 @@ export function SettingsMenu() {
   return (
     <MenuProvider placement="right">
       <MenuButton _hover={{ opacity: 0.8 }}>
-        <Avatar
-          src={"https://picsum.photos/id/237/256/256"}
-          size="md"
-          alt="Profile photo"
-          shape="circle"
-        />
+        <Avatar src={profile} size="md" alt="Profile photo" shape="circle" />
       </MenuButton>
       <Menu gutter={12}>
         <MenuItem onClick={toggle}>

@@ -19,6 +19,7 @@
       }
     ],
     "paths": {
+      "@/public/*": ["./public/*"],
       "@/storybook/*": ["./.storybook/*"],
       "@/styled/*": ["./.styled/*"],
       "@/*": ["./src/*"]

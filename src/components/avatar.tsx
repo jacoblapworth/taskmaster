@@ -1,4 +1,4 @@
-import NextImage from "next/image"
+import NextImage, { type StaticImageData } from "next/image"
 
 import { styled } from "@/styled/jsx"
 import type { JsxStyleProps, StyledVariantProps } from "@/styled/types"
@@ -66,7 +66,7 @@ const AvatarFallback = styled("div", {
 })
 
 interface Props extends StyledVariantProps<typeof Container>, JsxStyleProps {
-  src?: string
+  src?: string | StaticImageData
   alt?: string
 }
 
