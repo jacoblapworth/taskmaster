@@ -8,14 +8,14 @@ export const semanticTokens = defineSemanticTokens({
       },
       primary: {
         value: {
-          base: "{colors.white}",
-          _dark: "{colors.zinc.950}",
+          base: "{colors.zinc.50}",
+          _dark: "{colors.zinc.900}",
         },
       },
       secondary: {
         value: {
-          base: "{colors.zinc.50}",
-          _dark: "{colors.zinc.900}",
+          base: "{colors.white}",
+          _dark: "{colors.zinc.950}",
         },
       },
       overlay: {
@@ -158,8 +158,8 @@ export const semanticTokens = defineSemanticTokens({
       },
       secondary: {
         value: {
-          base: "{colors.zinc.700}",
-          _dark: "{colors.zinc.200}",
+          base: "{colors.text.secondary}",
+          _dark: "{colors.text.secondary}",
         },
       },
       tertiary: {

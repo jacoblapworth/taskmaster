@@ -7,24 +7,27 @@ import { useEffect, useMemo, useRef, useState } from "react"
 import { TaskStatuses, type Task, type TaskStatus } from "@/models/types"
 import { useAppDispatch, useAppSelector } from "@/redux/hooks"
 import {
-  organisationSelectors,
   selectTasksByProjectIdGroupedByStatus,
   taskSelectors,
 } from "@/redux/selectors"
 import { projectTasksReordered } from "@/redux/slices/tasks.slice"
-import { ensureDemoData } from "@/redux/thunks"
 import { styled } from "@/styled/jsx"
 
 import { TasksColumn } from "./tasks-column"
 
 const Container = styled("div", {
   base: {
-    display: "flex",
+    "--column-width": "340px",
+    display: "grid",
     gap: "2",
+    gridAutoFlow: "column",
+    gridAutoColumns: "[minmax(var(--column-width), 1fr)]",
     backgroundColor: "background.primary",
     border: "tertiary",
     borderRadius: "2xl",
     padding: "2",
+    overflow: "auto",
+    overscrollBehavior: "contain",
   },
 })
 
@@ -36,21 +39,17 @@ function createEmptyTaskGroups(): Record<TaskStatus, Task[]> {
   return {
     TODO: [],
     IN_PROGRESS: [],
+    BLOCKED: [],
     DONE: [],
   }
 }
 
 export function TasksBoard({ projectId }: Props) {
   const dispatch = useAppDispatch()
-  const organisationTotal = useAppSelector(organisationSelectors.selectTotal)
-  const fallbackProjectId = useAppSelector((state) => {
-    const firstProjectId = state.projects.ids[0]
-    return firstProjectId ? String(firstProjectId) : null
-  })
-  const resolvedProjectId = projectId ?? fallbackProjectId
+
   const groupedTasks = useAppSelector((state) =>
-    resolvedProjectId
-      ? selectTasksByProjectIdGroupedByStatus(state, resolvedProjectId)
+    projectId
+      ? selectTasksByProjectIdGroupedByStatus(state, projectId)
       : createEmptyTaskGroups(),
   )
   const tasksById = useAppSelector(taskSelectors.selectEntities)
@@ -58,6 +57,7 @@ export function TasksBoard({ projectId }: Props) {
     () => ({
       TODO: groupedTasks.TODO.map((task) => task.id),
       IN_PROGRESS: groupedTasks.IN_PROGRESS.map((task) => task.id),
+      BLOCKED: groupedTasks.BLOCKED.map((task) => task.id),
       DONE: groupedTasks.DONE.map((task) => task.id),
     }),
     [groupedTasks],
@@ -67,12 +67,6 @@ export function TasksBoard({ projectId }: Props) {
   const previousItems = useRef(groupedTaskIds)
   const draggingRef = useRef(false)
   const itemsRef = useRef(items)
-
-  useEffect(() => {
-    if (organisationTotal === 0) {
-      dispatch(ensureDemoData())
-    }
-  }, [dispatch, organisationTotal])
 
   useEffect(() => {
     if (!draggingRef.current) {
@@ -85,7 +79,7 @@ export function TasksBoard({ projectId }: Props) {
     itemsRef.current = items
   }, [items])
 
-  if (!resolvedProjectId) {
+  if (!projectId) {
     return <Container>No project found.</Container>
   }
 
@@ -114,7 +108,7 @@ export function TasksBoard({ projectId }: Props) {
 
         dispatch(
           projectTasksReordered({
-            projectId: resolvedProjectId,
+            projectId: projectId,
             columns: itemsRef.current,
           }),
         )

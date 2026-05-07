@@ -2,8 +2,8 @@ import { z } from "zod"
 
 export const DateTime = z.iso.datetime()
 
-export const TaskStatus = z.enum(["TODO", "IN_PROGRESS", "DONE"])
-export const TaskStatuses = ["TODO", "IN_PROGRESS", "DONE"] as const
+export const TaskStatus = z.enum(["TODO", "IN_PROGRESS", "BLOCKED", "DONE"])
+export const TaskStatuses = TaskStatus.options
 
 export const Organisation = z.object({
   id: z.string(),

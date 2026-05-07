@@ -8,6 +8,7 @@ import { Providers } from "@/app/providers"
 import { Body } from "@/components/body"
 import { Nav } from "@/components/nav"
 import { ReduxProvider } from "@/components/redux-provider"
+import { DemoDataHydrator } from "@/components/use-demo-data"
 import { DEFAULT_THEME } from "@/constants"
 
 const inter = Inter({
@@ -37,6 +38,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
             storage="cookie"
           >
             <Providers>
+              <DemoDataHydrator />
               <Nav />
               {children}
             </Providers>

@@ -1,10 +1,13 @@
 "use client"
 
+import { Heading } from "@ariakit/react"
 import { useSortable } from "@dnd-kit/react/sortable"
 
 import type { Task, TaskStatus } from "@/models/types"
+import { HStack } from "@/styled/jsx"
 
 import { Card } from "./card"
+import { StatusIcon } from "./status-icon"
 
 interface Props {
   task: Task
@@ -24,18 +27,12 @@ export function TaskCard({ column, index, sortable = true, task }: Props) {
   })
 
   return (
-    <div
-      ref={ref}
-      style={{
-        cursor: sortable ? "grab" : "default",
-        opacity: isDragging ? 0.6 : 1,
-      }}
-    >
-      <Card>
-        <strong>{task.title}</strong>
-        {task.description ? <p>{task.description}</p> : null}
-        <small>status: {task.status}</small>
-      </Card>
-    </div>
+    <Card ref={ref} isDragging={isDragging} isSortable={sortable}>
+      <HStack>
+        <StatusIcon status={task.status} size="sm" />
+        <Heading>{task.title}</Heading>
+      </HStack>
+      {task.description ? <p>{task.description}</p> : null}
+    </Card>
   )
 }

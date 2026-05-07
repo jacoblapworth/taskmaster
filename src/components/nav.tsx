@@ -19,7 +19,7 @@ const Container = styled("nav", {
     // justifyContent: "space-between",
     alignSelf: "flex-start",
     justifySelf: "flex-start",
-    backgroundColor: "background.primary",
+    backgroundColor: "background.secondary",
     borderRadius: "full",
     padding: "[8px]",
     border: "tertiary",

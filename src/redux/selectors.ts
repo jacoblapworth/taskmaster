@@ -34,6 +34,7 @@ function createEmptyTaskGroups(): Record<TaskStatus, Task[]> {
   return {
     TODO: [],
     IN_PROGRESS: [],
+    BLOCKED: [],
     DONE: [],
   }
 }

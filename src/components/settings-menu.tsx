@@ -5,7 +5,7 @@ import { useThemeToggle } from "./theme-toggle"
 export function SettingsMenu() {
   const { toggle, icon } = useThemeToggle()
   return (
-    <MenuProvider>
+    <MenuProvider placement="right">
       <MenuButton _hover={{ opacity: 0.8 }}>
         <Avatar
           src={"https://picsum.photos/id/237/256/256"}
@@ -14,7 +14,7 @@ export function SettingsMenu() {
           shape="circle"
         />
       </MenuButton>
-      <Menu gutter={8}>
+      <Menu gutter={12}>
         <MenuItem onClick={toggle}>
           {icon}
           Toggle theme

@@ -1,6 +1,5 @@
 import NextImage from "next/image"
 
-import { css } from "@/styled/css"
 import { styled } from "@/styled/jsx"
 import type { JsxStyleProps, StyledVariantProps } from "@/styled/types"
 
@@ -59,9 +58,6 @@ const AvatarImage = styled(NextImage, {
     objectFit: "cover",
     width: "[100%]",
     height: "[100%]",
-    _light: {
-      filter: "[brightness(5)]",
-    },
   },
 })
 

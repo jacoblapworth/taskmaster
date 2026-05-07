@@ -5,6 +5,7 @@ import { useDroppable } from "@dnd-kit/react"
 import type { Task, TaskStatus } from "@/models/types"
 import { styled } from "@/styled/jsx"
 
+import { StatusIcon } from "./status-icon"
 import { TaskCard } from "./task-card"
 
 const Container = styled("div", {
@@ -21,6 +22,7 @@ const Container = styled("div", {
 const Header = styled("div", {
   base: {
     display: "flex",
+    alignItems: "center",
   },
 })
 
@@ -56,6 +58,7 @@ export function TasksColumn({ droppable = true, status, tasks }: Props) {
       }
     >
       <Header>
+        <StatusIcon status={status} />
         {status} ({tasks.length})
       </Header>
       <Column>

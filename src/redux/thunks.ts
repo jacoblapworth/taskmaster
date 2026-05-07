@@ -1,3 +1,5 @@
+import { createAsyncThunk } from "@reduxjs/toolkit"
+
 import { demoHierarchy } from "@/redux/demo-data"
 import {
   organisationSelectors,
@@ -37,7 +39,11 @@ function hasSeedData(state: RootState) {
   return organisationSelectors.selectTotal(state) > 0
 }
 
-export const ensureDemoData = (): AppThunk => (dispatch, getState) => {
+export const ensureDemoData = createAsyncThunk<
+  void,
+  void,
+  { state: RootState }
+>("demo/ensureDemoData", async (_, { dispatch, getState }) => {
   if (hasSeedData(getState())) {
     return
   }
@@ -47,7 +53,7 @@ export const ensureDemoData = (): AppThunk => (dispatch, getState) => {
   dispatch(usersAdded(demoHierarchy.users))
   dispatch(projectsAdded(demoHierarchy.projects))
   dispatch(tasksAdded(demoHierarchy.tasks))
-}
+})
 
 export const resetDemoData = (): AppThunk => (dispatch) => {
   dispatch(tasksCleared())
@@ -55,7 +61,7 @@ export const resetDemoData = (): AppThunk => (dispatch) => {
   dispatch(usersCleared())
   dispatch(teamsCleared())
   dispatch(organisationsCleared())
-  dispatch(ensureDemoData())
+  void dispatch(ensureDemoData())
 }
 
 export const deleteProjectCascade =
