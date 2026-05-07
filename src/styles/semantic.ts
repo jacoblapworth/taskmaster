@@ -39,7 +39,7 @@ export const semanticTokens = defineSemanticTokens({
         hover: {
           value: {
             base: "{colors.zinc.950}",
-            _dark: "{colors.zinc.800}",
+            _dark: "{colors.zinc.200}",
           },
         },
       },
@@ -50,17 +50,37 @@ export const semanticTokens = defineSemanticTokens({
             _dark: "{colors.zinc.800}",
           },
         },
+        active: {
+          value: {
+            base: "{colors.zinc.200}",
+            _dark: "{colors.zinc.800}",
+          },
+        },
         hover: {
           value: {
-            base: "{colors.white}",
+            base: "{colors.zinc.100}",
             _dark: "{colors.zinc.800}",
           },
         },
       },
       tertiary: {
-        value: {
-          base: "{colors.zinc.100}",
-          _dark: "{colors.zinc.950}",
+        DEFAULT: {
+          value: {
+            base: "{colors.zinc.100}",
+            _dark: "{colors.zinc.950}",
+          },
+        },
+        active: {
+          value: {
+            base: "{colors.zinc.200}",
+            _dark: "{colors.zinc.800}",
+          },
+        },
+        hover: {
+          value: {
+            base: "{colors.zinc.100}",
+            _dark: "{colors.zinc.800}",
+          },
         },
       },
       quaternary: {
@@ -91,18 +111,6 @@ export const semanticTokens = defineSemanticTokens({
         value: {
           base: "{colors.violet.100}",
           _dark: "{colors.violet.950}",
-        },
-      },
-      active: {
-        value: {
-          base: "{colors.zinc.200}",
-          _dark: "{colors.zinc.800}",
-        },
-      },
-      hover: {
-        value: {
-          base: "{colors.zinc.100}",
-          _dark: "{colors.zinc.800}",
         },
       },
     },

@@ -40,10 +40,10 @@ const Container = styled("div", {
 })
 
 interface Props {
-  filter: TasksFilter
+  filter?: TasksFilter
 }
 
-export function TasksBoard({ filter }: Props) {
+export function TasksBoard({ filter = {} }: Props) {
   const dispatch = useAppDispatch()
 
   const groupedTasks = useTasksFilter(filter)

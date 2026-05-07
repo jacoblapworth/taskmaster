@@ -11,7 +11,7 @@ import { HStack, VStack, styled } from "@/styled/jsx"
 
 import { Card } from "./card"
 import { Pill } from "./pill"
-import { StatusIcon } from "./status-icon"
+import { StatusIconMenu } from "./status-icon-menu"
 
 const Description = styled("p", {
   base: {
@@ -26,6 +26,7 @@ interface Props {
   column: TaskStatus
   sortable?: boolean
   showProject?: boolean
+  onStatusChange?: (status: TaskStatus) => void
 }
 
 export function TaskCard({
@@ -34,6 +35,7 @@ export function TaskCard({
   showProject,
   sortable = true,
   task,
+  onStatusChange,
 }: Props) {
   const { isDragging, ref } = useSortable({
     id: task.id,
@@ -53,7 +55,10 @@ export function TaskCard({
   return (
     <Card ref={ref} isDragging={isDragging} isSortable={sortable}>
       <HStack alignItems="start">
-        <StatusIcon status={task.status} size="md" />
+        <StatusIconMenu
+          status={task.status}
+          onChange={(values) => console.log(values)}
+        />
         <VStack gap="1" alignItems="start">
           <Heading>{task.title}</Heading>
           {project && (

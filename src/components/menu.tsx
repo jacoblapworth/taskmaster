@@ -48,11 +48,11 @@ export const menuItemStyles = cva({
     cursor: "pointer",
 
     _hover: {
-      backgroundColor: "surface.hover",
+      backgroundColor: "surface.secondary.hover",
     },
 
     _activeItem: {
-      backgroundColor: "surface.active",
+      backgroundColor: "surface.secondary.active",
     },
   },
   variants: {

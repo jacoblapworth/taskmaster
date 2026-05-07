@@ -13,13 +13,17 @@ import { StatusIcon } from "./status-icon"
 
 interface Props {
   status: TaskStatus
+  onChange?: (status: TaskStatus) => void
 }
 
-export function StatusButton({ status }: Props) {
+export function StatusIconMenu({ status, onChange }: Props) {
   const t = useTranslations("task")
 
   return (
-    <MenuProvider defaultValues={{ status }}>
+    <MenuProvider
+      defaultValues={{ status }}
+      setValues={({ status }) => onChange?.(status)}
+    >
       <MenuButton>
         <StatusIcon status={status} />
       </MenuButton>

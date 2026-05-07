@@ -13,14 +13,14 @@ export const NavL2Item = styled(NextLink, {
     padding: "2",
     lineHeight: "[1]",
     _hover: {
-      backgroundColor: "surface.hover",
+      backgroundColor: "surface.tertiary.hover",
     },
   },
   variants: {
     isActive: {
       true: {
         color: "text.primary",
-        backgroundColor: "surface.active",
+        backgroundColor: "surface.tertiary.active",
       },
     },
   },

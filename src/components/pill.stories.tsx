@@ -44,12 +44,6 @@ export const Sentiments = meta.story({
   ),
 })
 
-export const WithoutIcon = meta.story({
-  args: {
-    showIcon: false,
-  },
-})
-
 export const IconOnly = meta.story({
   args: {
     showLabel: false,

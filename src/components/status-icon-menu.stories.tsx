@@ -1,10 +1,10 @@
 import preview from "@/storybook/preview"
 
-import { StatusButton } from "./status-button"
+import { StatusIconMenu } from "./status-icon-menu"
 
 const meta = preview.meta({
-  title: "Components/StatusButton",
-  component: StatusButton,
+  title: "Components/StatusIconMenu",
+  component: StatusIconMenu,
   args: {
     status: "TODO",
   },
