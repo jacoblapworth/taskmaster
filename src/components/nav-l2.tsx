@@ -1,6 +1,6 @@
 import type { ReactNode } from "react"
 
-import { styled } from "@/styled/jsx"
+import { styled, VStack } from "@/styled/jsx"
 
 const Container = styled("div", {
   base: {
@@ -12,8 +12,6 @@ const Container = styled("div", {
     backgroundColor: "background.secondary",
     border: "tertiary",
     borderRadius: "3xl",
-    padding: "2",
-    gap: "0.5",
   },
 })
 
@@ -21,8 +19,8 @@ const Header = styled("div", {
   base: {
     display: "flex",
     alignItems: "center",
-    textStyle: "heading.md",
-    padding: "2",
+    textStyle: "heading.lg",
+    padding: "4",
   },
 })
 
@@ -34,7 +32,9 @@ export function NavL2({ children }: Props) {
   return (
     <Container>
       <Header>Projects</Header>
-      {children}
+      <VStack alignItems="stretch" gap="1" padding="2">
+        {children}
+      </VStack>
     </Container>
   )
 }

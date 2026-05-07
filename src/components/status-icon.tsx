@@ -38,8 +38,8 @@ const Container = styled("div", {
     },
     size: {
       sm: {
-        width: "1",
-        height: "1",
+        width: "4",
+        height: "4",
       },
       md: {
         width: "6",
@@ -63,11 +63,11 @@ interface Props extends Variants {
   status: TaskStatus
 }
 
-export function StatusIcon({ status }: Props) {
+export function StatusIcon({ status, ...props }: Props) {
   const Icon = statusIconMap[status]
 
   return (
-    <Container status={status}>
+    <Container status={status} {...props}>
       <Icon />
     </Container>
   )

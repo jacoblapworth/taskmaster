@@ -6,7 +6,7 @@ import { StatusIcon } from "./status-icon"
 const Container = styled("div", {
   base: {
     display: "flex",
-    gap: "2",
+    gap: "4",
     alignItems: "center",
   },
 })

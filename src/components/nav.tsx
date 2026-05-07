@@ -40,6 +40,7 @@ const Li = styled("li", {
     padding: "0",
     display: "inline",
     // padding: "1rem",
+    height: "[32px]",
   },
 })
 
@@ -72,7 +73,7 @@ export function Nav() {
       <Ul>
         {navConfig.map(({ id, href, icon }) => (
           <Li key={id}>
-            <NavL1Item href={href} isActive={selected === id}>
+            <NavL1Item href={href} isActive={selected?.startsWith(id)}>
               {icon}
             </NavL1Item>
           </Li>

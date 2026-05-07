@@ -4,7 +4,12 @@ import { move } from "@dnd-kit/helpers"
 import { DragDropProvider } from "@dnd-kit/react"
 import { useEffect, useMemo, useRef, useState } from "react"
 
-import { TaskStatuses, type Task, type TaskStatus, type TasksFilter } from "@/models/types"
+import {
+  TaskStatuses,
+  type Task,
+  type TaskStatus,
+  type TasksFilter,
+} from "@/models/types"
 import { useAppDispatch, useAppSelector, useTasksFilter } from "@/redux/hooks"
 import { taskSelectors } from "@/redux/selectors"
 import { taskUpdated, projectTasksReordered } from "@/redux/slices/tasks.slice"
@@ -113,7 +118,10 @@ export function TasksBoard({ filter }: Props) {
             }
             for (const status of TaskStatuses) {
               for (const taskId of itemsRef.current[status]) {
-                if (prevStatusMap[taskId] !== undefined && prevStatusMap[taskId] !== status) {
+                if (
+                  prevStatusMap[taskId] !== undefined &&
+                  prevStatusMap[taskId] !== status
+                ) {
                   const task = tasksById[taskId]
                   if (task) {
                     dispatch(

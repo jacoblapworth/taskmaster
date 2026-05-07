@@ -39,7 +39,7 @@ export const semanticTokens = defineSemanticTokens({
         hover: {
           value: {
             base: "{colors.zinc.950}",
-            _dark: "{colors.zinc.100}",
+            _dark: "{colors.zinc.800}",
           },
         },
       },
@@ -53,7 +53,7 @@ export const semanticTokens = defineSemanticTokens({
         hover: {
           value: {
             base: "{colors.white}",
-            _dark: "{colors.zinc.700}",
+            _dark: "{colors.zinc.800}",
           },
         },
       },
