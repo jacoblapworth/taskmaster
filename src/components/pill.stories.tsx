@@ -17,7 +17,7 @@ const meta = preview.meta({
   title: "Components/Pill",
   component: Pill,
   args: {
-    label: "label",
+    children: "label",
     sentiment: "neutral",
   },
   argTypes: {
@@ -35,11 +35,11 @@ export const Primary = meta.story({
 export const Sentiments = meta.story({
   render: () => (
     <StoryStack>
-      <Pill sentiment="neutral" label="label" />
-      <Pill sentiment="positive" label="label" />
-      <Pill sentiment="info" label="label" />
-      <Pill sentiment="warning" label="label" />
-      <Pill sentiment="negative" label="label" />
+      <Pill sentiment="neutral">label</Pill>
+      <Pill sentiment="positive">label</Pill>
+      <Pill sentiment="info">label</Pill>
+      <Pill sentiment="warning">label</Pill>
+      <Pill sentiment="negative">label</Pill>
     </StoryStack>
   ),
 })
@@ -53,6 +53,6 @@ export const WithoutIcon = meta.story({
 export const IconOnly = meta.story({
   args: {
     showLabel: false,
-    label: "",
+    children: "",
   },
 })

@@ -67,6 +67,13 @@ export const Task = z.object({
   completedAt: DateTime.optional(),
 })
 
+export const TasksFilter = z.object({
+  projectId: z.uuid().optional(),
+  assigneeId: z.uuid().optional(),
+})
+
+export type TasksFilter = z.infer<typeof TasksFilter>
+
 export function createTask(
   data: Omit<z.infer<typeof Task>, "id" | "createdAt" | "updatedAt">,
 ) {

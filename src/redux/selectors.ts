@@ -6,6 +6,7 @@ import {
   type Project,
   type Task,
   type TaskStatus,
+  type TasksFilter,
 } from "@/models/types"
 import { organisationsAdapter } from "@/redux/slices/organisations.slice"
 import { projectsAdapter } from "@/redux/slices/projects.slice"
@@ -87,23 +88,37 @@ export const selectTasksByUserId = createSelector(
   (tasks, userId) => tasks.filter((task) => task.assigneeId === userId),
 )
 
+function groupTasksByStatus(tasks: Task[]): Record<TaskStatus, Task[]> {
+  const groupedTasks = createEmptyTaskGroups()
+  for (const task of tasks) {
+    groupedTasks[task.status].push(task)
+  }
+  for (const status of TaskStatuses) {
+    groupedTasks[status].sort(compareTasks)
+  }
+  return groupedTasks
+}
+
 export const selectTasksByProjectIdGroupedByStatus = createSelector(
   [selectTasksByProjectId],
   (tasks) => {
-    const groupedTasks = createEmptyTaskGroups()
+    return groupTasksByStatus(tasks)
+  },
+)
 
-    console.log({ groupedTasks })
-
-    for (const task of tasks) {
-      console.log({ task })
-      groupedTasks[task.status].push(task)
-    }
-
-    for (const status of TaskStatuses) {
-      groupedTasks[status].sort(compareTasks)
-    }
-
-    return groupedTasks
+export const selectTasksByFilterGroupedByStatus = createSelector(
+  [
+    taskSelectors.selectAll,
+    (_state: RootState, filter: TasksFilter) => filter.projectId,
+    (_state: RootState, filter: TasksFilter) => filter.assigneeId,
+  ],
+  (tasks, projectId, assigneeId) => {
+    const filtered = tasks.filter(
+      (task) =>
+        (!projectId || task.projectId === projectId) &&
+        (!assigneeId || task.assigneeId === assigneeId),
+    )
+    return groupTasksByStatus(filtered)
   },
 )
 

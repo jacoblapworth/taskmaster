@@ -12,7 +12,7 @@ export default function Page(props: PageProps<"/tasks">) {
           New Task
         </Link>
       </PageHeader>
-      <TasksBoard />
+      <TasksBoard filter={{}} />
     </PageCard>
   )
 }

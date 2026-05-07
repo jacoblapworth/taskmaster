@@ -42,9 +42,10 @@ interface Props {
   status: TaskStatus
   tasks: Task[]
   droppable?: boolean
+  showProject?: boolean
 }
 
-export function TasksColumn({ droppable = true, status, tasks }: Props) {
+export function TasksColumn({ droppable = true, showProject, status, tasks }: Props) {
   const t = useTranslations("task")
   const { isDropTarget, ref } = useDroppable({
     id: status,
@@ -84,6 +85,7 @@ export function TasksColumn({ droppable = true, status, tasks }: Props) {
             index={index}
             column={status}
             sortable={droppable}
+            showProject={showProject}
           />
         ))}
       </Column>

@@ -17,6 +17,16 @@ const meta = preview.meta({
   ],
 })
 
-export const Primary = meta.story({
-  args: {},
+export const SingleProject = meta.story({
+  name: "Single project",
+  args: {
+    filter: { projectId: store.getState().projects.ids[0] as string },
+  },
+})
+
+export const AllTasks = meta.story({
+  name: "All tasks (multi-project)",
+  args: {
+    filter: {},
+  },
 })

@@ -9,10 +9,10 @@ export type PillSentiment =
   | "negative"
   | "info"
 
-interface PillProps {
+interface Props {
   sentiment?: PillSentiment
   icon?: ReactNode
-  label?: string
+  children?: ReactNode
   showIcon?: boolean
   showLabel?: boolean
 }
@@ -70,14 +70,11 @@ const PillLabel = styled("span", {
   },
 })
 
-export function Pill({
-  sentiment = "neutral",
-  icon,
-  label = "label",
-}: PillProps) {
+export function Pill({ sentiment = "neutral", icon, children }: Props) {
   return (
     <PillRoot sentiment={sentiment}>
-      <PillLabel>{label}</PillLabel>
+      {icon && <span>{icon}</span>}
+      {children && <PillLabel>{children}</PillLabel>}
     </PillRoot>
   )
 }

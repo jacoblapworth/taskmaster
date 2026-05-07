@@ -4,13 +4,10 @@ import { move } from "@dnd-kit/helpers"
 import { DragDropProvider } from "@dnd-kit/react"
 import { useEffect, useMemo, useRef, useState } from "react"
 
-import { TaskStatuses, type Task, type TaskStatus } from "@/models/types"
-import { useAppDispatch, useAppSelector } from "@/redux/hooks"
-import {
-  selectTasksByProjectIdGroupedByStatus,
-  taskSelectors,
-} from "@/redux/selectors"
-import { projectTasksReordered } from "@/redux/slices/tasks.slice"
+import { TaskStatuses, type Task, type TaskStatus, type TasksFilter } from "@/models/types"
+import { useAppDispatch, useAppSelector, useTasksFilter } from "@/redux/hooks"
+import { taskSelectors } from "@/redux/selectors"
+import { taskUpdated, projectTasksReordered } from "@/redux/slices/tasks.slice"
 import { styled } from "@/styled/jsx"
 
 import { TasksColumn } from "./tasks-column"
@@ -38,27 +35,17 @@ const Container = styled("div", {
 })
 
 interface Props {
-  projectId?: string
+  filter: TasksFilter
 }
 
-function createEmptyTaskGroups(): Record<TaskStatus, Task[]> {
-  return {
-    TODO: [],
-    IN_PROGRESS: [],
-    BLOCKED: [],
-    DONE: [],
-  }
-}
-
-export function TasksBoard({ projectId }: Props) {
+export function TasksBoard({ filter }: Props) {
   const dispatch = useAppDispatch()
 
-  const groupedTasks = useAppSelector((state) =>
-    projectId
-      ? selectTasksByProjectIdGroupedByStatus(state, projectId)
-      : createEmptyTaskGroups(),
-  )
+  const groupedTasks = useTasksFilter(filter)
   const tasksById = useAppSelector(taskSelectors.selectEntities)
+
+  const isSingleProject = !!filter.projectId
+
   const groupedTaskIds = useMemo<Record<TaskStatus, string[]>>(
     () => ({
       TODO: groupedTasks.TODO.map((task) => task.id),
@@ -85,10 +72,6 @@ export function TasksBoard({ projectId }: Props) {
     itemsRef.current = items
   }, [items])
 
-  if (!projectId) {
-    return <Container>No project found.</Container>
-  }
-
   return (
     <Container>
       <DragDropProvider
@@ -113,12 +96,44 @@ export function TasksBoard({ projectId }: Props) {
             return
           }
 
-          dispatch(
-            projectTasksReordered({
-              projectId: projectId,
-              columns: itemsRef.current,
-            }),
-          )
+          if (isSingleProject) {
+            dispatch(
+              projectTasksReordered({
+                projectId: filter.projectId!,
+                columns: itemsRef.current,
+              }),
+            )
+          } else {
+            const timestamp = new Date().toISOString()
+            const prevStatusMap: Record<string, TaskStatus> = {}
+            for (const status of TaskStatuses) {
+              for (const taskId of previousItems.current[status]) {
+                prevStatusMap[taskId] = status
+              }
+            }
+            for (const status of TaskStatuses) {
+              for (const taskId of itemsRef.current[status]) {
+                if (prevStatusMap[taskId] !== undefined && prevStatusMap[taskId] !== status) {
+                  const task = tasksById[taskId]
+                  if (task) {
+                    dispatch(
+                      taskUpdated({
+                        id: taskId,
+                        changes: {
+                          status,
+                          updatedAt: timestamp,
+                          completedAt:
+                            status === "DONE"
+                              ? (task.completedAt ?? timestamp)
+                              : undefined,
+                        },
+                      }),
+                    )
+                  }
+                }
+              }
+            }
+          }
         }}
       >
         {TaskStatuses.map((status) => {
@@ -126,7 +141,14 @@ export function TasksBoard({ projectId }: Props) {
             .map((taskId) => tasksById[taskId])
             .filter((task): task is Task => task !== undefined)
 
-          return <TasksColumn key={status} status={status} tasks={tasks} />
+          return (
+            <TasksColumn
+              key={status}
+              status={status}
+              tasks={tasks}
+              showProject={!isSingleProject}
+            />
+          )
         })}
       </DragDropProvider>
     </Container>

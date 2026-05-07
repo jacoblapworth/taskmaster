@@ -33,7 +33,7 @@ export default function Page({ params }: PageProps<"/projects/[id]">) {
       </PageHeader>
       <PageContent>
         <ProjectProgressCard projectId={id} />
-        <TasksBoard projectId={id} />
+        <TasksBoard filter={{ projectId: id }} />
       </PageContent>
     </PageCard>
   )
