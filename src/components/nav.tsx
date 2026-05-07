@@ -38,6 +38,7 @@ const Li = styled("li", {
   base: {
     listStyle: "none",
     padding: "0",
+    display: "inline",
     // padding: "1rem",
   },
 })

@@ -5,11 +5,14 @@ import { styled } from "@/styled/jsx"
 const Header = styled("header", {
   base: {
     textStyle: "heading.lg",
-    padding: "4",
+    paddingInline: "4",
+    paddingBlock: "3",
     borderBlockEnd: "tertiary",
-    marginInline: "-4",
-    marginBlockStart: "-4",
     gridArea: "header",
+    display: "grid",
+    alignItems: "center",
+    gridTemplateAreas: "'content actions'",
+    gridTemplateColumns: "1fr auto",
   },
 })
 

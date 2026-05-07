@@ -28,7 +28,7 @@ export const metadata: Metadata = {
   description: "Todo app",
 }
 
-export default function RootLayout({ children }: LayoutProps<"/">) {
+export default function RootLayout({ children, modal }: LayoutProps<"/">) {
   return (
     <html lang="en" className={`${geistMono.variable} ${inter.variable}`}>
       <Body>
@@ -44,6 +44,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
                 <DemoDataHydrator />
                 <Nav />
                 {children}
+                {modal}
               </Providers>
             </ThemeProvider>
           </ReduxProvider>

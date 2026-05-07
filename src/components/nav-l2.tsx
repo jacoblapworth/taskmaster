@@ -13,6 +13,7 @@ const Container = styled("div", {
     border: "tertiary",
     borderRadius: "3xl",
     padding: "2",
+    gap: "0.5",
   },
 })
 

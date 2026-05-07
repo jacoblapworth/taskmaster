@@ -38,16 +38,16 @@ const Container = styled("div", {
     },
     size: {
       sm: {
-        width: "[16px]",
-        height: "[16px]",
+        width: "1",
+        height: "1",
       },
       md: {
-        width: "[24px]",
-        height: "[24px]",
+        width: "6",
+        height: "6",
       },
       lg: {
-        width: "[32px]",
-        height: "[32px]",
+        width: "8",
+        height: "8",
       },
     },
   },

@@ -30,15 +30,31 @@ export const semanticTokens = defineSemanticTokens({
         value: "{colors.surface.primary}",
       },
       primary: {
-        value: {
-          base: "{colors.zinc.950}",
-          _dark: "{colors.white}",
+        DEFAULT: {
+          value: {
+            base: "{colors.zinc.950}",
+            _dark: "{colors.white}",
+          },
+        },
+        hover: {
+          value: {
+            base: "{colors.zinc.950}",
+            _dark: "{colors.zinc.100}",
+          },
         },
       },
       secondary: {
-        value: {
-          base: "{colors.white}",
-          _dark: "{colors.zinc.800}",
+        DEFAULT: {
+          value: {
+            base: "{colors.white}",
+            _dark: "{colors.zinc.800}",
+          },
+        },
+        hover: {
+          value: {
+            base: "{colors.white}",
+            _dark: "{colors.zinc.700}",
+          },
         },
       },
       tertiary: {
@@ -80,7 +96,7 @@ export const semanticTokens = defineSemanticTokens({
       active: {
         value: {
           base: "{colors.zinc.200}",
-          _dark: "{colors.zinc.700}",
+          _dark: "{colors.zinc.800}",
         },
       },
       hover: {

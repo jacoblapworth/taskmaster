@@ -5,7 +5,7 @@ export const Card = styled("div", {
     borderRadius: "lg",
     border: "secondary",
     backgroundColor: "surface.secondary",
-    padding: "4",
+    padding: "2",
   },
   variants: {
     isSortable: {

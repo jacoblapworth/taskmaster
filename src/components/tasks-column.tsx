@@ -17,6 +17,7 @@ const Container = styled("div", {
     backgroundColor: "background.secondary",
     padding: "2",
     borderRadius: "xl",
+    scrollSnapAlign: "start",
   },
 })
 
@@ -24,6 +25,8 @@ const Header = styled("div", {
   base: {
     display: "flex",
     alignItems: "center",
+    paddingInline: "2",
+    gap: "3",
   },
 })
 
@@ -60,19 +63,18 @@ export function TasksColumn({ droppable = true, status, tasks }: Props) {
       }
     >
       <Header>
-        <HStack gap="1" alignItems="center">
+        <HStack alignItems="center" gap="2">
           <StatusIcon status={status} />
           {t(`status.${status}`)}
-          <Box
-            borderRadius="lg"
-            backgroundColor="surface.secondary"
-            paddingInline="2"
-            paddingBlock="0.5"
-            color="text.secondary"
-          >
-            {tasks.length}
-          </Box>
         </HStack>
+        <Box
+          borderRadius="2xl"
+          backgroundColor="surface.secondary"
+          paddingInline="2"
+          color="text.secondary"
+        >
+          {tasks.length}
+        </Box>
       </Header>
       <Column>
         {tasks.map((task, index) => (

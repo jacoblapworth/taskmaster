@@ -11,9 +11,7 @@ export const PageCard = styled("div", {
     backgroundColor: "background.secondary",
     border: "tertiary",
     borderRadius: "3xl",
-    padding: "4",
-    overflow: "hidden",
-    gap: "4",
+    overflowX: "hidden",
     "& > *:not(header)": {
       gridArea: "content",
     },

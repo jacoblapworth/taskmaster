@@ -3,6 +3,7 @@ import { createSelector } from "@reduxjs/toolkit"
 import {
   TaskStatuses,
   type OrganisationWithTeams,
+  type Project,
   type Task,
   type TaskStatus,
 } from "@/models/types"
@@ -171,4 +172,87 @@ export const selectHierarchySummary = createSelector(
     projects,
     tasks,
   }),
+)
+
+export interface BurndownPoint {
+  date: string
+  remaining: number
+  ideal: number
+}
+
+function toDateKey(isoString: string): string {
+  return isoString.slice(0, 10)
+}
+
+function addDays(dateStr: string, days: number): string {
+  const d = new Date(dateStr)
+  d.setUTCDate(d.getUTCDate() + days)
+  return d.toISOString().slice(0, 10)
+}
+
+function formatLabel(dateStr: string): string {
+  const d = new Date(`${dateStr}T00:00:00Z`)
+  return d.toLocaleDateString("en-US", {
+    month: "short",
+    day: "numeric",
+    timeZone: "UTC",
+  })
+}
+
+function computeBurndown(tasks: Task[], project: Project): BurndownPoint[] {
+  if (tasks.length === 0) return []
+
+  const startStr = toDateKey(
+    tasks.reduce(
+      (min, t) => (t.createdAt < min ? t.createdAt : min),
+      tasks[0].createdAt,
+    ),
+  )
+  const endStr = project.dueDate
+    ? toDateKey(project.dueDate)
+    : toDateKey(new Date().toISOString())
+  const todayStr = toDateKey(new Date().toISOString())
+  const effectiveEnd = endStr > todayStr ? todayStr : endStr
+
+  const points: BurndownPoint[] = []
+  const total = tasks.length
+
+  let cursor = startStr
+  let day = 0
+  const totalDays = Math.max(
+    1,
+    Math.round(
+      (new Date(`${endStr}T00:00:00Z`).getTime() -
+        new Date(`${startStr}T00:00:00Z`).getTime()) /
+        86_400_000,
+    ),
+  )
+
+  while (cursor <= effectiveEnd) {
+    const created = tasks.filter((t) => toDateKey(t.createdAt) <= cursor).length
+    const completed = tasks.filter(
+      (t) => t.completedAt && toDateKey(t.completedAt) <= cursor,
+    ).length
+    const remaining = created - completed
+    const ideal = Math.round(total * (1 - day / totalDays))
+
+    points.push({ date: formatLabel(cursor), remaining, ideal })
+
+    cursor = addDays(cursor, 1)
+    day++
+  }
+
+  return points
+}
+
+export const selectBurndownByProjectId = createSelector(
+  [
+    selectTasksByProjectId,
+    (state: RootState, projectId: string) =>
+      projectSelectors.selectById(state, projectId),
+  ],
+  (tasks, project): BurndownPoint[] => {
+    if (!project) return []
+    return computeBurndown(tasks, project)
+  },
 )

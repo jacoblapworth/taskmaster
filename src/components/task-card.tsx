@@ -4,10 +4,17 @@ import { Heading } from "@ariakit/react"
 import { useSortable } from "@dnd-kit/react/sortable"
 
 import type { Task, TaskStatus } from "@/models/types"
-import { HStack } from "@/styled/jsx"
+import { HStack, styled } from "@/styled/jsx"
 
 import { Card } from "./card"
 import { StatusIcon } from "./status-icon"
+
+const Description = styled("p", {
+  base: {
+    textStyle: "body.sm",
+    color: "text.secondary",
+  },
+})
 
 interface Props {
   task: Task
@@ -28,11 +35,10 @@ export function TaskCard({ column, index, sortable = true, task }: Props) {
 
   return (
     <Card ref={ref} isDragging={isDragging} isSortable={sortable}>
-      <HStack>
+      <HStack alignItems="start">
         <StatusIcon status={task.status} size="sm" />
         <Heading>{task.title}</Heading>
       </HStack>
-      {task.description ? <p>{task.description}</p> : null}
     </Card>
   )
 }

@@ -2,6 +2,11 @@ import type { TodoHierarchy } from "@/models/types"
 
 const timestamp = "2026-05-02T09:00:00.000Z"
 
+// Taskmaster project timeline helpers (Jan 1 – May 7, 2026)
+function d(dateStr: string) {
+  return `${dateStr}T09:00:00.000Z`
+}
+
 const organisationId = "10f8d2b8-3f91-4f27-8b8d-3f4c1a6f2d10"
 const platformTeamId = "8a5d7e1a-1f4e-4ac7-9f3d-2d69f6f0e201"
 const designOpsTeamId = "f4b16db5-b6f1-41ab-8a86-d0b6e53d2f02"
@@ -66,6 +71,7 @@ export const demoHierarchy: TodoHierarchy = {
       name: "Taskmaster App",
       description:
         "Build the initial task hierarchy and state layer. Covers Redux slice architecture, persisted storage, typed selectors, and the core CRUD flows for organisations, teams, projects, and tasks.",
+      dueDate: "2026-05-31T00:00:00.000Z",
     },
     {
       id: designSystemProjectId,
@@ -99,9 +105,10 @@ export const demoHierarchy: TodoHierarchy = {
         "Set up redux-persist with localStorage as the storage engine. Configure the root reducer to persist organisation, team, project, and task slices. Ensure rehydration happens before the first render using PersistGate so the UI never flashes with an empty state.",
       status: "DONE",
       assigneeId: avaUserId,
-      dueDate: "2026-05-05",
-      createdAt: timestamp,
-      updatedAt: timestamp,
+      dueDate: "2026-01-10",
+      createdAt: d("2026-01-02"),
+      updatedAt: d("2026-01-12"),
+      completedAt: d("2026-01-12"),
     },
     {
       id: "d0b6f2a7-2b27-4f2e-9d88-b73d9a2e9606",
@@ -112,8 +119,8 @@ export const demoHierarchy: TodoHierarchy = {
       status: "IN_PROGRESS",
       assigneeId: miloUserId,
       dueDate: "2026-05-07",
-      createdAt: timestamp,
-      updatedAt: timestamp,
+      createdAt: d("2026-01-02"),
+      updatedAt: d("2026-04-28"),
     },
     {
       id: "e1a2b3c4-d5e6-4f7a-8b9c-0d1e2f3a4b08",
@@ -123,9 +130,10 @@ export const demoHierarchy: TodoHierarchy = {
         "Write memoised createSelector factories that derive per-project task lists grouped by status column. Selectors should accept a projectId parameter and return tasks in a stable column order: TODO, IN_PROGRESS, DONE. Export selector hooks from redux/hooks.tsx for use in board components.",
       status: "DONE",
       assigneeId: avaUserId,
-      dueDate: "2026-05-04",
-      createdAt: timestamp,
-      updatedAt: timestamp,
+      dueDate: "2026-01-20",
+      createdAt: d("2026-01-02"),
+      updatedAt: d("2026-01-22"),
+      completedAt: d("2026-01-22"),
     },
     {
       id: "f2b3c4d5-e6f7-4a8b-9c0d-1e2f3a4b5c09",
@@ -136,8 +144,8 @@ export const demoHierarchy: TodoHierarchy = {
       status: "IN_PROGRESS",
       assigneeId: miloUserId,
       dueDate: "2026-05-09",
-      createdAt: timestamp,
-      updatedAt: timestamp,
+      createdAt: d("2026-01-15"),
+      updatedAt: d("2026-04-30"),
     },
     {
       id: "a3c4d5e6-f7a8-4b9c-0d1e-2f3a4b5c6d10",
@@ -148,8 +156,8 @@ export const demoHierarchy: TodoHierarchy = {
       status: "TODO",
       assigneeId: rinUserId,
       dueDate: "2026-05-12",
-      createdAt: timestamp,
-      updatedAt: timestamp,
+      createdAt: d("2026-01-15"),
+      updatedAt: d("2026-01-15"),
     },
     {
       id: "b4d5e6f7-a8b9-4c0d-1e2f-3a4b5c6d7e11",
@@ -160,8 +168,8 @@ export const demoHierarchy: TodoHierarchy = {
       status: "TODO",
       assigneeId: miloUserId,
       dueDate: "2026-05-14",
-      createdAt: timestamp,
-      updatedAt: timestamp,
+      createdAt: d("2026-01-15"),
+      updatedAt: d("2026-01-15"),
     },
     {
       id: "c5e6f7a8-b9c0-4d1e-2f3a-4b5c6d7e8f12",
@@ -171,9 +179,10 @@ export const demoHierarchy: TodoHierarchy = {
         "Build the /projects/[id] route. Fetch the project and its tasks from the Redux store using the projectId param. Render the project header (name, description, team badge, due date) above the task board. Handle the case where the project ID is not found with a graceful 404 state.",
       status: "DONE",
       assigneeId: avaUserId,
-      dueDate: "2026-05-03",
-      createdAt: timestamp,
-      updatedAt: timestamp,
+      dueDate: "2026-02-15",
+      createdAt: d("2026-01-28"),
+      updatedAt: d("2026-02-18"),
+      completedAt: d("2026-02-18"),
     },
     {
       id: "d6f7a8b9-c0d1-4e2f-3a4b-5c6d7e8f9a13",
@@ -184,8 +193,8 @@ export const demoHierarchy: TodoHierarchy = {
       status: "TODO",
       assigneeId: rinUserId,
       dueDate: "2026-05-16",
-      createdAt: timestamp,
-      updatedAt: timestamp,
+      createdAt: d("2026-01-28"),
+      updatedAt: d("2026-01-28"),
     },
     {
       id: "e7a8b9c0-d1e2-4f3a-4b5c-6d7e8f9a0b14",
@@ -196,8 +205,8 @@ export const demoHierarchy: TodoHierarchy = {
       status: "TODO",
       assigneeId: avaUserId,
       dueDate: "2026-05-19",
-      createdAt: timestamp,
-      updatedAt: timestamp,
+      createdAt: d("2026-02-05"),
+      updatedAt: d("2026-02-05"),
     },
     {
       id: "f8b9c0d1-e2f3-4a4b-5c6d-7e8f9a0b1c15",
@@ -207,10 +216,99 @@ export const demoHierarchy: TodoHierarchy = {
         "Initialise Storybook 8 with the Next.js framework plugin. Write stories for TaskCard, TasksColumn, and TasksBoard covering all status variants, empty states, and drag-active states. Add a11y addon and ensure zero violations in automated checks.",
       status: "DONE",
       assigneeId: rinUserId,
-      dueDate: "2026-05-02",
-      createdAt: timestamp,
-      updatedAt: timestamp,
+      dueDate: "2026-03-01",
+      createdAt: d("2026-02-05"),
+      updatedAt: d("2026-03-03"),
+      completedAt: d("2026-03-03"),
     },
+      {
+        id: "19c2d3e4-f5a6-4789-8b0c-1d2e3f4a5b31",
+        projectId: taskmasterProjectId,
+        title: "Add keyboard shortcuts for board actions",
+        description:
+          "Introduce keyboard shortcuts for creating a task, focusing the next column, and opening task details. Keep the bindings discoverable in the UI and avoid conflicts with browser defaults.",
+        status: "DONE",
+        assigneeId: avaUserId,
+        dueDate: "2026-03-14",
+        createdAt: d("2026-03-08"),
+        updatedAt: d("2026-03-16"),
+        completedAt: d("2026-03-16"),
+      },
+      {
+        id: "2ad3e4f5-a6b7-4890-9c1d-2e3f4a5b6c32",
+        projectId: taskmasterProjectId,
+        title: "Expose task activity timeline",
+        description:
+          "Render a lightweight timeline on the task detail view showing status changes, assignee updates, and due-date edits. Pull the data from Redux first and leave API sync for a later milestone.",
+        status: "DONE",
+        assigneeId: rinUserId,
+        dueDate: "2026-03-21",
+        createdAt: d("2026-03-12"),
+        updatedAt: d("2026-03-24"),
+        completedAt: d("2026-03-24"),
+      },
+      {
+        id: "3be4f5a6-b7c8-4901-8d2e-3f4a5b6c7d33",
+        projectId: taskmasterProjectId,
+        title: "Persist board filters in URL state",
+        description:
+          "Encode the active search term, assignee filter, and status filter into the URL so project views can be shared directly. Handle invalid query params by falling back to the default board state.",
+        status: "DONE",
+        assigneeId: avaUserId,
+        dueDate: "2026-03-28",
+        createdAt: d("2026-03-18"),
+        updatedAt: d("2026-03-29"),
+        completedAt: d("2026-03-29"),
+      },
+      {
+        id: "4cf5a6b7-c8d9-4012-9e3f-4a5b6c7d8e34",
+        projectId: taskmasterProjectId,
+        title: "Implement inline task title editing",
+        description:
+          "Allow users to rename a task directly from the board card with optimistic updates and escape-to-cancel support. Preserve focus correctly when the edit is committed or dismissed.",
+        status: "DONE",
+        assigneeId: miloUserId,
+        dueDate: "2026-04-04",
+        createdAt: d("2026-03-27"),
+        updatedAt: d("2026-04-05"),
+        completedAt: d("2026-04-05"),
+      },
+      {
+        id: "5da6b7c8-d9e0-4123-8f4a-5b6c7d8e9f35",
+        projectId: taskmasterProjectId,
+        title: "Add swimlane grouping by assignee",
+        description:
+          "Support an alternate board layout that groups tasks into assignee swimlanes while preserving the existing status columns. Keep the feature behind a simple view toggle and reuse current selectors where possible.",
+        status: "IN_PROGRESS",
+        assigneeId: rinUserId,
+        dueDate: "2026-04-18",
+        createdAt: d("2026-04-02"),
+        updatedAt: d("2026-04-17"),
+      },
+      {
+        id: "6eb7c8d9-e0f1-4234-9a5b-6c7d8e9f0a36",
+        projectId: taskmasterProjectId,
+        title: "Create project-level analytics summary",
+        description:
+          "Add a summary section for throughput, overdue tasks, and completion rate on the project page. Use derived selectors only and keep the visual treatment aligned with the existing card system.",
+        status: "TODO",
+        assigneeId: avaUserId,
+        dueDate: "2026-04-25",
+        createdAt: d("2026-04-10"),
+        updatedAt: d("2026-04-10"),
+      },
+      {
+        id: "7fc8d9e0-f1a2-4345-8b6c-7d8e9f0a1b37",
+        projectId: taskmasterProjectId,
+        title: "Add bulk status update actions",
+        description:
+          "Let users multi-select tasks and move them between statuses in one action. Maintain keyboard accessibility and show a confirmation only for destructive bulk actions.",
+        status: "TODO",
+        assigneeId: miloUserId,
+        dueDate: "2026-05-02",
+        createdAt: d("2026-04-18"),
+        updatedAt: d("2026-04-18"),
+      },
     // ── Design System Refresh ─────────────────────────────────────────────────
     {
       id: "e7c5a4b1-6d8c-4d95-b9a7-1c3e4f5a8707",

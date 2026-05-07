@@ -17,17 +17,23 @@ import { TasksColumn } from "./tasks-column"
 
 const Container = styled("div", {
   base: {
-    "--column-width": "340px",
+    "--column-min-width": "340px",
+    "--column-max-width": "400px",
     display: "grid",
     gap: "2",
     gridAutoFlow: "column",
-    gridAutoColumns: "[minmax(var(--column-width), 1fr)]",
+    gridAutoColumns:
+      "[minmax(var(--column-min-width), var(--column-max-width))]",
     backgroundColor: "background.primary",
     border: "tertiary",
     borderRadius: "2xl",
     padding: "2",
     overflow: "auto",
     overscrollBehavior: "contain",
+    flexGrow: 1,
+    scrollbarColor: "[{colors.surface.secondary} transparent]",
+    scrollSnapType: "[x mandatory]",
+    scrollPadding: "2",
   },
 })
 
@@ -84,37 +90,37 @@ export function TasksBoard({ projectId }: Props) {
   }
 
   return (
-    <DragDropProvider
-      onDragStart={() => {
-        draggingRef.current = true
-        previousItems.current = itemsRef.current
-      }}
-      onDragOver={(event) => {
-        const { source } = event.operation
+    <Container>
+      <DragDropProvider
+        onDragStart={() => {
+          draggingRef.current = true
+          previousItems.current = itemsRef.current
+        }}
+        onDragOver={(event) => {
+          const { source } = event.operation
 
-        if (source?.type !== "item") {
-          return
-        }
+          if (source?.type !== "item") {
+            return
+          }
 
-        setItems((currentItems) => move(currentItems, event))
-      }}
-      onDragEnd={(event) => {
-        draggingRef.current = false
+          setItems((currentItems) => move(currentItems, event))
+        }}
+        onDragEnd={(event) => {
+          draggingRef.current = false
 
-        if (event.canceled) {
-          setItems(previousItems.current)
-          return
-        }
+          if (event.canceled) {
+            setItems(previousItems.current)
+            return
+          }
 
-        dispatch(
-          projectTasksReordered({
-            projectId: projectId,
-            columns: itemsRef.current,
-          }),
-        )
-      }}
-    >
-      <Container>
+          dispatch(
+            projectTasksReordered({
+              projectId: projectId,
+              columns: itemsRef.current,
+            }),
+          )
+        }}
+      >
         {TaskStatuses.map((status) => {
           const tasks = items[status]
             .map((taskId) => tasksById[taskId])
@@ -122,7 +128,7 @@ export function TasksBoard({ projectId }: Props) {
 
           return <TasksColumn key={status} status={status} tasks={tasks} />
         })}
-      </Container>
-    </DragDropProvider>
+      </DragDropProvider>
+    </Container>
   )
 }
