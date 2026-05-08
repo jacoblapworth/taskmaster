@@ -58,13 +58,6 @@ const PillRoot = styled("div", {
   },
 })
 
-const PillLabel = styled("span", {
-  base: {
-    lineHeight: "[1]",
-    whiteSpace: "nowrap",
-  },
-})
-
 type Variants = StyledVariantProps<typeof PillRoot>
 
 interface Props extends Variants {

@@ -1,1 +1,1 @@
-export default function Page(props: PageProps<"/teams/[id]">) {}
+export default function Page(_props: PageProps<"/teams/[id]">) {}

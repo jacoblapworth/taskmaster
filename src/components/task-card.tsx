@@ -7,18 +7,11 @@ import NextLink from "next/link"
 import type { Task, TaskStatus } from "@/models/types"
 import { useAppSelector } from "@/redux/hooks"
 import { projectSelectors } from "@/redux/selectors"
-import { HStack, VStack, styled } from "@/styled/jsx"
+import { HStack, VStack } from "@/styled/jsx"
 
 import { Card } from "./card"
 import { Pill } from "./pill"
 import { StatusIconMenu } from "./status-icon-menu"
-
-const Description = styled("p", {
-  base: {
-    textStyle: "body.sm",
-    color: "text.secondary",
-  },
-})
 
 interface Props {
   task: Task
@@ -55,10 +48,7 @@ export function TaskCard({
   return (
     <Card ref={ref} isDragging={isDragging} isSortable={sortable}>
       <HStack alignItems="start">
-        <StatusIconMenu
-          status={task.status}
-          onChange={(values) => console.log(values)}
-        />
+        <StatusIconMenu status={task.status} onChange={onStatusChange} />
         <VStack gap="1" alignItems="start">
           <Heading>{task.title}</Heading>
           {project && (

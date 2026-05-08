@@ -4,7 +4,7 @@ import { PageContent } from "@/components/page-content"
 import { PageHeader } from "@/components/page-header"
 import { TasksBoard } from "@/components/tasks-board"
 
-export default function Page(props: PageProps<"/tasks">) {
+export default function Page(_props: PageProps<"/tasks">) {
   return (
     <PageCard>
       <PageHeader>

@@ -33,23 +33,6 @@ const Form = styled("form", {
   },
 })
 
-const Card = styled("div", {
-  base: {
-    display: "flex",
-    flexDirection: "column",
-    justifyContent: "space-between",
-    minHeight: "[200px]",
-    width: "[472px]",
-    maxWidth: "full",
-    borderRadius: "xl",
-    border: "secondary",
-    backgroundColor: "surface.secondary",
-    boxShadow: "md",
-    padding: "4",
-    gap: "3",
-  },
-})
-
 const TextInput = styled("input", {
   base: {
     width: "full",
@@ -110,13 +93,6 @@ const AvatarButton = styled(MenuButton, {
     cursor: "pointer",
   },
 })
-
-const statusLabels: Record<TaskStatus, string> = {
-  TODO: "To do",
-  IN_PROGRESS: "In progress",
-  BLOCKED: "Blocked",
-  DONE: "Done",
-}
 
 export default function Page() {
   const dispatch = useAppDispatch()
