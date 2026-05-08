@@ -11,6 +11,10 @@
       "cache": false,
       "persistent": true
     },
+    "tokens": {
+      "dependsOn": ["^tokens"],
+      "outputs": [".styled/**"]
+    },
     "studio": {
       "cache": false,
       "persistent": true
@@ -18,7 +22,7 @@
     "typegen": {
       "dependsOn": ["^typegen"]
     },
-    "check": {
+    "lint": {
       "dependsOn": ["tokens", "typegen", "^lint"]
     }
   }

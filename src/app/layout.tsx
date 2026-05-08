@@ -1,12 +1,12 @@
 import { Analytics } from "@vercel/analytics/next"
+import { SpeedInsights } from "@vercel/speed-insights/next"
 import { ThemeProvider } from "@wrksz/themes/next"
 import type { Metadata } from "next"
-import { NextIntlClientProvider } from "next-intl"
 
 import "./index.css"
+import { NextIntlClientProvider } from "next-intl"
 import { Geist_Mono, Inter } from "next/font/google"
 
-import { Providers } from "@/app/providers"
 import { Body } from "@/components/body"
 import { Nav } from "@/components/nav"
 import { ReduxProvider } from "@/components/redux-provider"
@@ -24,7 +24,7 @@ const geistMono = Geist_Mono({
 })
 
 export const metadata: Metadata = {
-  title: "TaskMaster",
+  title: "Project Clarity",
   description: "Todo app",
 }
 
@@ -40,15 +40,14 @@ export default function RootLayout({ children, modal }: LayoutProps<"/">) {
               attribute="class"
               storage="cookie"
             >
-              <Providers>
-                <DemoDataHydrator />
-                <Nav />
-                {children}
-                {modal}
-              </Providers>
+              <DemoDataHydrator />
+              <Nav />
+              {children}
+              {modal}
             </ThemeProvider>
           </ReduxProvider>
           <Analytics />
+          <SpeedInsights />
         </NextIntlClientProvider>
       </Body>
     </html>
