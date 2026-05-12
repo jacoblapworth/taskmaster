@@ -38,7 +38,7 @@
   },
   "devDependencies": {
     "@chromatic-com/storybook": "^5.1.2",
-    "@pandacss/dev": "^1.11.0",
+    "@pandacss/dev": "^1.11.1",
     "@pandacss/studio": "^1.11.0",
     "@pandacss/types": "^1.11.0",
     "@storybook/addon-a11y": "^10.3.6",
